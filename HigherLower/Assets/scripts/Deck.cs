@@ -5,6 +5,13 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     List<int> deck;
+    public IEnumerable<int> GetCards()
+    {
+        foreach (int i in deck)
+        {
+            yield return i;
+        }
+    }
     public void Shuffle()
     {
         if(deck == null)
@@ -24,13 +31,12 @@ public class Deck : MonoBehaviour
         int n = deck.Count;
         while (n > 1)
         {
-
             n--;
-            int k = random.Next(n);
+            int k = Random.Range(0, n+1);
             n--;
-            T temp = list[k];
-            list[k] = list[n];
-            list[n] = temp;
+            int temp = deck[k];
+            deck[k] = deck[n];
+            deck[n] = temp;
         }
     }
 
