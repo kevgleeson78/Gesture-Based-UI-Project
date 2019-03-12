@@ -33,7 +33,7 @@ public class Deck : MonoBehaviour
         {
             n--;
             int k = Random.Range(0, n+1);
-            n--;
+           
             int temp = deck[k];
             deck[k] = deck[n];
             deck[n] = temp;
