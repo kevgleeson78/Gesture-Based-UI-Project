@@ -6,6 +6,8 @@ using UnityEngine;
 public class CardStackView : MonoBehaviour
 {
     CardStack deck;
+    List<int> fetchCards;
+    int lastCount;
 
     public Vector3 start;
     public float cardOffset;
@@ -13,11 +15,22 @@ public class CardStackView : MonoBehaviour
 
     void Start()
     {
+        fetchCards = new List<int>();
         deck = GetComponent<CardStack>();
 
-        ShowCards(); 
+        ShowCards();
+        lastCount = deck.CardCount;
     }
 
+    private void Update()
+    {
+        if (lastCount != deck.CardCount)
+        {
+            lastCount = deck.CardCount;
+            ShowCards();
+        }
+        
+    }
     void ShowCards()
     {
         int cardCount = 0;
@@ -26,20 +39,34 @@ public class CardStackView : MonoBehaviour
             foreach (int i in deck.GetCards())
             {
                 float co = cardOffset * cardCount;
-                GameObject cardCopy = (GameObject)Instantiate(cardPrefab);
+               
 
                 Vector3 temp = start + new Vector3(co, 0f);
+                AddCard(temp, i, cardCount);
 
-                cardCopy.transform.position = temp;
 
-                Game game = cardCopy.GetComponent<Game>();
-                game.cardIndex = i;
-                game.ToggleFace(true);
-
-                SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
-                spriteRenderer.sortingOrder = cardCount;
                 cardCount++;
             }
         }
+
+    }
+
+    void AddCard(Vector3 position, int cardIndex, int PositionalIndex)
+    {
+        if (fetchCards.Contains(cardIndex))
+        {
+            return;
+        }
+        GameObject cardCopy = (GameObject)Instantiate(cardPrefab);
+        cardCopy.transform.position = position;
+
+        Game game = cardCopy.GetComponent<Game>();
+        game.cardIndex = cardIndex;
+        game.ToggleFace(true);
+
+        SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = PositionalIndex;
+
+        fetchCards.Add(cardIndex);
     }
 }

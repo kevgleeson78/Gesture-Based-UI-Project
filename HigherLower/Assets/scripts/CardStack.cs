@@ -5,9 +5,24 @@ using UnityEngine;
 public class CardStack : MonoBehaviour
 {
     List<int> cards;
+    public bool isGAmeDeck;
     public bool HasCards
     {
         get { return cards != null && cards.Count > 0; }
+    }
+    public int CardCount
+    {
+        get
+        {
+            if(cards == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return cards.Count;
+            }
+        }
     }
     public IEnumerable<int> GetCards()
     {
@@ -53,7 +68,11 @@ public class CardStack : MonoBehaviour
     void Start()
     {
         cards = new List<int>();
-        CreateDeck();
+        if (isGAmeDeck)
+        {
+            CreateDeck();
+        }
+       
     }
 
 }
