@@ -5,6 +5,10 @@ using UnityEngine;
 public class CardStack : MonoBehaviour
 {
     List<int> cards;
+    public bool HasCards
+    {
+        get { return cards != null && cards.Count > 0; }
+    }
     public IEnumerable<int> GetCards()
     {
         foreach (int i in cards)

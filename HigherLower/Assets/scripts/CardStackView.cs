@@ -21,22 +21,25 @@ public class CardStackView : MonoBehaviour
     void ShowCards()
     {
         int cardCount = 0;
-        foreach (int i in deck.GetCards())
+        if (deck.HasCards)
         {
-            float co = cardOffset * cardCount;
-            GameObject cardCopy = (GameObject)Instantiate(cardPrefab);
+            foreach (int i in deck.GetCards())
+            {
+                float co = cardOffset * cardCount;
+                GameObject cardCopy = (GameObject)Instantiate(cardPrefab);
 
-            Vector3 temp = start + new Vector3(co, 0f);
+                Vector3 temp = start + new Vector3(co, 0f);
 
-            cardCopy.transform.position = temp;
+                cardCopy.transform.position = temp;
 
-            Game game = cardCopy.GetComponent<Game>();
-            game.cardIndex = i;
-            game.ToggleFace(true);
+                Game game = cardCopy.GetComponent<Game>();
+                game.cardIndex = i;
+                game.ToggleFace(true);
 
-            SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
-            spriteRenderer.sortingOrder = cardCount;
-            cardCount++;
+                SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
+                spriteRenderer.sortingOrder = cardCount;
+                cardCount++;
+            }
         }
     }
 }
