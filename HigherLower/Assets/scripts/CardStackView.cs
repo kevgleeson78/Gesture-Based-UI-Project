@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Deck))]
-public class DeckView : MonoBehaviour
+[RequireComponent(typeof(CardStack))]
+public class CardStackView : MonoBehaviour
 {
-    Deck deck;
+    CardStack deck;
 
     public Vector3 start;
     public float cardOffset;
@@ -13,7 +13,7 @@ public class DeckView : MonoBehaviour
 
     void Start()
     {
-        deck = GetComponent<Deck>();
+        deck = GetComponent<CardStack>();
 
         ShowCards(); 
     }
