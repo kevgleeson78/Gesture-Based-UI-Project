@@ -6,7 +6,7 @@ using UnityEngine;
 public class CardStackView : MonoBehaviour
 {
     CardStack deck;
-    List<int> fetchCards;
+    Dictionary<int, GameObject> fetchCards;
     int lastCount;
 
     public Vector3 start;
@@ -15,7 +15,7 @@ public class CardStackView : MonoBehaviour
 
     void Start()
     {
-        fetchCards = new List<int>();
+        fetchCards = new Dictionary<int, GameObject>();
         deck = GetComponent<CardStack>();
 
         ShowCards();
@@ -53,7 +53,7 @@ public class CardStackView : MonoBehaviour
 
     void AddCard(Vector3 position, int cardIndex, int PositionalIndex)
     {
-        if (fetchCards.Contains(cardIndex))
+        if (fetchCards.ContainsKey(cardIndex))
         {
             return;
         }
@@ -67,6 +67,6 @@ public class CardStackView : MonoBehaviour
         SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = PositionalIndex;
 
-        fetchCards.Add(cardIndex);
+        fetchCards.Add(cardIndex, cardCopy);
     }
 }
