@@ -53,25 +53,38 @@ public class CardStack : MonoBehaviour
     public int HandValue()
     {
         int total = 0;
-
+        int aces = 0;
         foreach(int card in GetCards())
         {
             int cardRank = card % 13;
             if(cardRank <= 9 && cardRank > 0)
             {
                 cardRank += 1;
+                total = total + cardRank;
             }
             else if(cardRank >9 && cardRank <= 12)
             {
                 cardRank = 10;
+                total = total + cardRank;
             }
             else
             {
-                cardRank = 11;
+                aces++;
             }
-            total = total + cardRank;
-        }
 
+            
+        }
+        for (int i = 0; i < aces; i++)
+        {
+            if (total+11 <= 21)
+            {
+                total = total + 11;
+            }
+            else
+            {
+                total = total + 1;
+            }
+        }
 
 
         return total;
