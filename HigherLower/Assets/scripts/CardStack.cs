@@ -57,18 +57,10 @@ public class CardStack : MonoBehaviour
         foreach(int card in GetCards())
         {
             int cardRank = card % 13;
-            if(cardRank > 8 %% cardRank < 12)
-            {
-                cardRank += 2;
-            }
-            else if(cardRank >=8 && cardRank < 12)
-            {
-                cardRank = 10;
-            }
-            else
-            {
-                cardRank = 11;
-            }
+           
+                cardRank += 1;
+           
+            total = total + cardRank;
         }
 
 

@@ -88,5 +88,6 @@ public class CardStackView : MonoBehaviour
         
 
         fetchCards.Add(cardIndex, cardCopy);
+        Debug.Log("Hand value  = " + deck.HandValue());
     }
 }
