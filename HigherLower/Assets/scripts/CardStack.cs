@@ -50,6 +50,31 @@ public class CardStack : MonoBehaviour
     {
         cards.Add(card);
     }
+    public int HandValue()
+    {
+        int total = 0;
+
+        foreach(int card in GetCards())
+        {
+            int cardRank = card % 13;
+            if(cardRank > 8 %% cardRank < 12)
+            {
+                cardRank += 2;
+            }
+            else if(cardRank >=8 && cardRank < 12)
+            {
+                cardRank = 10;
+            }
+            else
+            {
+                cardRank = 11;
+            }
+        }
+
+
+
+        return total;
+    }
     public void CreateDeck()
     {
         
