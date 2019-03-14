@@ -252,7 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {x: -4, y: 0, z: 0}
-  cardOffset: 0.2
+  cardOffset: 0.005
+  faceUp: 0
   cardPrefab: {fileID: 259773150}
 --- !u!1 &259773150 stripped
 GameObject:
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {x: -4, y: 2, z: 0}
   cardOffset: 0.2
+  faceUp: 1
   cardPrefab: {fileID: 259773150}
 --- !u!114 &283351172
 MonoBehaviour:

@@ -11,6 +11,7 @@ public class CardStackView : MonoBehaviour
 
     public Vector3 start;
     public float cardOffset;
+    public bool faceUp = false;
     public GameObject cardPrefab;
 
     void Start()
@@ -20,6 +21,16 @@ public class CardStackView : MonoBehaviour
 
         ShowCards();
         lastCount = deck.CardCount;
+        deck.CardRemoved += Deck_CardRemoved;
+    }
+
+    void Deck_CardRemoved(object sender, CardRemovedEventArgs e)
+    {
+        if (fetchCards.ContainsKey(e.CardIndex))
+        {
+            Destroy(fetchCards[e.CardIndex]);
+            fetchCards.Remove(e.CardIndex);
+        }
     }
 
     private void Update()
@@ -62,7 +73,7 @@ public class CardStackView : MonoBehaviour
 
         Game game = cardCopy.GetComponent<Game>();
         game.cardIndex = cardIndex;
-        game.ToggleFace(true);
+        game.ToggleFace(faceUp);
 
         SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = PositionalIndex;
