@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 
-public class Game : MonoBehaviour {
+public class CardModel : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     public Sprite[] card;
     public Sprite cardBack;

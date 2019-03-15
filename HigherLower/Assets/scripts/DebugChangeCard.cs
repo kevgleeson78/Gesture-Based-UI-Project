@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DebugChangeCard : MonoBehaviour
 {
-    Game cardModel;
+    CardModel cardModel;
     int cardIndex;
     public GameObject card;
 
 
     private void Awake()
     {
-        cardModel = card.GetComponent<Game>();
+        cardModel = card.GetComponent<CardModel>();
     }
     private void OnGUI()
     {
