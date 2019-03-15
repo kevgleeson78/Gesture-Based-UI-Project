@@ -81,6 +81,7 @@ public class GameController : MonoBehaviour
             winnerText.text = "House wins";
         }
         yield return new WaitForSeconds(1f);
-        playAgainButton.interactable = true;
+        playAgainButton.interactable = true; 
+
     }
 }
