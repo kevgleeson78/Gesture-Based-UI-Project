@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
         {
             hitButton.interactable = false;
             stickButton.interactable = false;
+            StartCoroutine(DealersTurn());
         }
     }
 
@@ -29,6 +30,20 @@ public class GameController : MonoBehaviour
         hitButton.interactable = false;
         stickButton.interactable = false;
         StartCoroutine(DealersTurn());
+    }
+    public void PlayAgain()
+    {
+        playAgainButton.interactable = false;
+        player.GetComponent<CardStackView>().Clear();
+        dealer.GetComponent<CardStackView>().Clear();
+        deck.GetComponent<CardStackView>().Clear();
+        deck.CreateDeck();
+        winnerText.text = "";
+        hitButton.interactable = true;
+        stickButton.interactable = true;
+        dealersFirstCard = -1;
+        StartGame();
+      
     }
     private void Start()
     {
@@ -58,11 +73,13 @@ public class GameController : MonoBehaviour
     }
     IEnumerator DealersTurn()
     {
+        hitButton.interactable = false;
+        stickButton.interactable = false;
         CardStackView view = dealer.GetComponent<CardStackView>();
         view.Toggle(dealersFirstCard, true);
         view.ShowCards();
         yield return new WaitForSeconds(1f);
-        while (dealer.HandValue() < 17)
+        while (dealer.HandValue() < 17 || dealer.HandValue() < player.HandValue())
         {
             HitDealer();
             yield return new WaitForSeconds(1f);
@@ -74,14 +91,15 @@ public class GameController : MonoBehaviour
         }
         else if(dealer.HandValue() > 21 || (player.HandValue() <=21 && player.HandValue() > dealer.HandValue()))
         {
-            winnerText.text = "You HAve Won!!!";
+            winnerText.text = "You Have Won!!!";
         }
         else
         {
             winnerText.text = "House wins";
         }
         yield return new WaitForSeconds(1f);
-        playAgainButton.interactable = true; 
+        playAgainButton.interactable = true;
+        
 
     }
 }

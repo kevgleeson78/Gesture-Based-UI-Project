@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardStack : MonoBehaviour
 {
     List<int> cards;
-    public bool isGAmeDeck;
+    public bool isGameDeck;
     public bool HasCards
     {
         get { return cards != null && cards.Count > 0; }
@@ -116,7 +116,10 @@ public class CardStack : MonoBehaviour
             cards[n] = temp;
         }
     }
-
+    public void Reset()
+    {
+        cards.Clear();
+    }
     void Awake()
     {
         cards = new List<int>();

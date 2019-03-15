@@ -7,8 +7,7 @@ public class CardStackView : MonoBehaviour
 {
     CardStack deck;
     Dictionary<int, CardView> fetchCards;
-    
-    int lastCount;
+
 
     public Vector3 start;
     public float cardOffset;
@@ -21,13 +20,23 @@ public class CardStackView : MonoBehaviour
     {
         fetchCards[card].IsFaceUp = isFaceUp;
     }
+    public void Clear()
+    {
+        deck.Reset();
+        foreach (CardView view in fetchCards.Values)
+        {
+            Destroy(view.Card);
+
+        }
+        fetchCards.Clear();
+    }
     void Awake()
     {
         fetchCards = new Dictionary<int, CardView>();
         deck = GetComponent<CardStack>();
 
         ShowCards();
-        lastCount = deck.CardCount;
+        
         deck.CardRemoved += deck_CardRemoved;
         deck.cardAdded += deck_CardAdded;
     }
@@ -51,11 +60,9 @@ public class CardStackView : MonoBehaviour
 
     private void Update()
     {
-        if (lastCount != deck.CardCount)
-        {
-            lastCount = deck.CardCount;
+      
             ShowCards();
-        }
+        
         
     }
    public void ShowCards()
@@ -111,6 +118,6 @@ public class CardStackView : MonoBehaviour
         
 
         fetchCards.Add(cardIndex, new CardView(cardCopy));
-        Debug.Log("Hand value  = " + deck.HandValue());
+      
     }
 }
