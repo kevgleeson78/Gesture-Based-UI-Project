@@ -58,7 +58,7 @@ public class CardStackView : MonoBehaviour
         }
         
     }
-    void ShowCards()
+   public void ShowCards()
     {
         int cardCount = 0;
         if (deck.HasCards)
