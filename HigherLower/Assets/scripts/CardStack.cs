@@ -123,7 +123,7 @@ public class CardStack : MonoBehaviour
     void Awake()
     {
         cards = new List<int>();
-        if (isGAmeDeck)
+        if (isGameDeck)
         {
             CreateDeck();
         }
