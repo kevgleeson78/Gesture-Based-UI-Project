@@ -9,9 +9,11 @@ public class HeadGuestures : MonoBehaviour
     private Vector3[] angles;
     private int index;
     private Vector3 centerAngle;
+    private float deg = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
+       
         RestGesture();
     }
 
@@ -39,18 +41,18 @@ public class HeadGuestures : MonoBehaviour
 
         for (int i = 0; i < 80; i++)
         {
-            if (angles[i].x < centerAngle.x - 20.0f && !up)
+            if (angles[i].x < centerAngle.x - deg && !up)
             {
                 up = true;
-            }else if (angles[i].x > centerAngle.x + 20.0f && !down)
+            }else if (angles[i].x > centerAngle.x + deg && !down)
             {
                 down = true;
             }
-            if (angles[i].y < centerAngle.y - 20.0f && !left)
+            if (angles[i].y < centerAngle.y - deg && !left)
             {
                 left = true;
             }
-            else if (angles[i].y > centerAngle.y + 20.0f && !right)
+            else if (angles[i].y > centerAngle.y + deg && !right)
             {
                 right = true;
             }
@@ -58,10 +60,12 @@ public class HeadGuestures : MonoBehaviour
         if (left && right && !(up && down))
         {
             Debug.Log("gesture = NO");
+            GvrCardboardHelpers.Recenter();
         }
         if (up && down && !(left && right))
         {
             Debug.Log("Gesture =  YES");
+            GvrCardboardHelpers.Recenter();
         }
     }
     void RestGesture()
@@ -69,5 +73,6 @@ public class HeadGuestures : MonoBehaviour
         angles = new Vector3[80];
         index = 0;
         centerAngle = Camera.main.transform.eulerAngles;
+       
     }
 }
