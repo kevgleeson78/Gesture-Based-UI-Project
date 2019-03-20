@@ -107,7 +107,7 @@ public class CardStackView : MonoBehaviour
         model.ToggleFace(faceUp);
       
         SpriteRenderer spriteRenderer = cardCopy.GetComponent<SpriteRenderer>();
-        model.transform.parent = Camera.main.transform;
+       // model.transform.parent = Camera.main.transform;
         if (reverseLayerOrder)
         {
             spriteRenderer.sortingOrder = 51 - PositionalIndex;

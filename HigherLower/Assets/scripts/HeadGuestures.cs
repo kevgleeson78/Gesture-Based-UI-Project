@@ -60,12 +60,12 @@ public class HeadGuestures : MonoBehaviour
         if (left && right && !(up && down))
         {
             Debug.Log("gesture = NO");
-            GvrCardboardHelpers.Recenter();
+            //GvrCardboardHelpers.Recenter();
         }
         if (up && down && !(left && right))
         {
             Debug.Log("Gesture =  YES");
-            GvrCardboardHelpers.Recenter();
+           // GvrCardboardHelpers.Recenter();
         }
     }
     void RestGesture()
