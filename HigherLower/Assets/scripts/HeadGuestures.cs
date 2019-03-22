@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class HeadGuestures : MonoBehaviour
 {
+    public GameController gc;
     private Vector3[] angles;
     private int index;
     private Vector3 centerAngle;
-    private float deg = 1.0f;
+    private float deg = 20.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,12 +61,21 @@ public class HeadGuestures : MonoBehaviour
         if (left && right && !(up && down))
         {
             Debug.Log("gesture = NO");
+            if (gc.noddable)
+            {
+                gc.Stick();
+            }
+            
             //GvrCardboardHelpers.Recenter();
         }
         if (up && down && !(left && right))
         {
             Debug.Log("Gesture =  YES");
-           // GvrCardboardHelpers.Recenter();
+            // GvrCardboardHelpers.Recenter();
+            if (gc.noddable)
+            {
+                gc.Hit();
+            }
         }
     }
     void RestGesture()
