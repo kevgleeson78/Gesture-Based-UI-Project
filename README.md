@@ -43,6 +43,15 @@ From this conversation I had the idea of creating a blackjack game that would be
 
 In the sections below I will discuss how I went about developing the game along with implementing the head gesture recognition for the system.
 
+### Purpose of the application
+
+### Gestures identified as appropriate for this application
+
+### Hardware used in creating the application
+
+### Architecture for the solution
+
+### Conclusions & Recommendations
 
 
 
