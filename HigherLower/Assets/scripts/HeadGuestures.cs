@@ -10,7 +10,7 @@ public class HeadGuestures : MonoBehaviour
     private Vector3[] angles;
     private int index;
     private Vector3 centerAngle;
-    private float deg = 20.0f;
+    private float deg = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
