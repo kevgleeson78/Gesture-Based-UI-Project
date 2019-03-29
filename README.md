@@ -44,6 +44,15 @@ From this conversation I had the idea of creating a blackjack game that would be
 In the sections below I will discuss how I went about developing the game along with implementing the head gesture recognition for the system.
 
 ### Purpose of the application
+The purpose of this application is to allow a user to control a card game while using only head gestures.
+#### Mockup here.
+The card game will be presented to the user via an app on their mobile phone.
+This app is a virtual reallity environment using Google VR.
+With the phone attached to a Google cardboard or similar device the users head positon can be tracked.
+Tracking the users head is achieved by getting the angle of tilt relative to the phone position (More about this below).
+With this data we can then capture head gestures and map them to actions within the game.
+
+
 
 ### Gestures identified as appropriate for this application
 
@@ -52,6 +61,8 @@ In the sections below I will discuss how I went about developing the game along 
 ### Architecture for the solution
 
 ### Conclusions & Recommendations
+
+### Resources
 
 
 
