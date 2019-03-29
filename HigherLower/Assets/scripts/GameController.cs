@@ -10,18 +10,16 @@ public class GameController : MonoBehaviour
     public CardStack dealer;
     public CardStack deck;
     public bool noddable = true;
-    public Button hitButton;
-    public Button stickButton;
-    public Button playAgainButton;
+    
     public Text winnerText;
+    public bool gameOver = false;
     public void Hit()
     {
         player.Push(deck.Pop());
         if (player.HandValue() > 21)
         {
             noddable = false;
-            hitButton.interactable = false;
-            stickButton.interactable = false;
+           
             StartCoroutine(DealersTurn());
         }
     }
@@ -29,21 +27,20 @@ public class GameController : MonoBehaviour
     public void Stick()
     {
         noddable = false;
-        hitButton.interactable = false;
-        stickButton.interactable = false;
+        
         StartCoroutine(DealersTurn());
     }
     public void PlayAgain()
     {
+        gameOver = false;
         noddable = true;
-        playAgainButton.interactable = false;
+        
         player.GetComponent<CardStackView>().Clear();
         dealer.GetComponent<CardStackView>().Clear();
         deck.GetComponent<CardStackView>().Clear();
         deck.CreateDeck();
         winnerText.text = "";
-        hitButton.interactable = true;
-        stickButton.interactable = true;
+        
         dealersFirstCard = -1;
         StartGame();
       
@@ -77,8 +74,7 @@ public class GameController : MonoBehaviour
     IEnumerator DealersTurn()
     {
         noddable = false;
-        hitButton.interactable = false;
-        stickButton.interactable = false;
+       
         CardStackView view = dealer.GetComponent<CardStackView>();
         view.Toggle(dealersFirstCard, true);
         view.ShowCards();
@@ -91,18 +87,19 @@ public class GameController : MonoBehaviour
 
         if (player.HandValue() > 21 || (dealer.HandValue() >= player.HandValue() && dealer.HandValue() <=21))
         {
-            winnerText.text = "You have lost!!!!";
+            winnerText.text = "You have lost!!!!\n Play again Yes / No";
         }
         else if(dealer.HandValue() > 21 || (player.HandValue() <=21 && player.HandValue() > dealer.HandValue()))
         {
-            winnerText.text = "You Have Won!!!";
+            winnerText.text = "You Have Won!!!\n Play again Yes / No";
         }
         else
         {
-            winnerText.text = "House wins";
+            winnerText.text = "House wins\n Play again Yes / No";
         }
         yield return new WaitForSeconds(1f);
-        playAgainButton.interactable = true;
+       
+        gameOver = true;
         
 
     }

@@ -84,11 +84,14 @@ public class GvrReticlePointer : GvrBasePointer
     public override void OnPointerEnter(RaycastResult raycastResultResult, bool isInteractive)
     {
         SetPointerTarget(raycastResultResult.worldPosition, isInteractive);
+       
+       
     }
 
     public override void OnPointerHover(RaycastResult raycastResultResult, bool isInteractive)
     {
         SetPointerTarget(raycastResultResult.worldPosition, isInteractive);
+        
     }
 
     public override void OnPointerExit(GameObject previousObject)
@@ -152,7 +155,7 @@ public class GvrReticlePointer : GvrBasePointer
         ReticleInnerAngle = RETICLE_MIN_INNER_ANGLE;
         ReticleOuterAngle = RETICLE_MIN_OUTER_ANGLE;
     }
-
+    
     /// @cond
     protected override void Start()
     {
@@ -164,6 +167,7 @@ public class GvrReticlePointer : GvrBasePointer
         MaterialComp = rendererComponent.material;
 
         CreateReticleVertices();
+        
     }
 
     /// @endcond

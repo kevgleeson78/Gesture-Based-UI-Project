@@ -65,16 +65,24 @@ public class HeadGuestures : MonoBehaviour
             {
                 gc.Stick();
             }
-            
+            if (gc.gameOver)
+            {
+                // Android close icon or back button tapped.
+                Application.Quit();
+            }
             //GvrCardboardHelpers.Recenter();
         }
         if (up && down && !(left && right))
         {
             Debug.Log("Gesture =  YES");
             // GvrCardboardHelpers.Recenter();
-            if (gc.noddable)
+            if (gc.noddable && !gc.gameOver)
             {
                 gc.Hit();
+            }
+            if (gc.gameOver)
+            {
+                gc.PlayAgain();
             }
         }
     }
