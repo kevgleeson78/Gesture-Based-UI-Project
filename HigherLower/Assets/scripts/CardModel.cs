@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 /*
  * A class to get the card sprite game objects
- * 
- * 
+ *  
  * */
 public class CardModel : MonoBehaviour {
     SpriteRenderer spriteRenderer;

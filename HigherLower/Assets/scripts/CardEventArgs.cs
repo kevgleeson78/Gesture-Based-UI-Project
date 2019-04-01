@@ -1,5 +1,5 @@
 ﻿using System;
-
+// Event handler for card indexing
 public class CardEventArgs : EventArgs
 {
     public int CardIndex { get; private set; }
