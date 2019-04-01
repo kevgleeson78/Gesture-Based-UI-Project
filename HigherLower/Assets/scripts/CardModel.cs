@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 /*
- * A class to get the card sprite game objects
- *  
- * */
+ * Title: Gesture Based UI Development Project
+ * Discription: A class to get the card sprite game objects adn set the index of each card to a stack array
+ * Adapted from: https://www.youtube.com/watch?v=FxH8FoddkVY&list=PLZo2FfoMkJeE6GXx8cEUeR9KzItTvaKlz
+ * @Author: Kevin Gleeson
+ * Version: 1.0
+ * Date: 1/04/2019
+ * 
+ */
+
 public class CardModel : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     // And array of the card sprites split from the original pdf in the sprite editor.

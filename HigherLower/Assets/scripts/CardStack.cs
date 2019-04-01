@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Title: Gesture Based UI Development Project
+ * Discription: Script to handle the card array and shuffling the deck
+ *              along with the cards that are face up or down.
+ * Adapted from: https://www.youtube.com/watch?v=FxH8FoddkVY&list=PLZo2FfoMkJeE6GXx8cEUeR9KzItTvaKlz
+ * @Author: Kevin Gleeson
+ * Version: 1.0
+ * Date: 1/04/2019
+ * 
+ */
 public class CardStack : MonoBehaviour
 {
-    // List to hold crad index
+    // List to hold card index
     List<int> cards;
-
+    // unity editor checkbox to select the main deck
     public bool isGameDeck;
     public bool HasCards
     {

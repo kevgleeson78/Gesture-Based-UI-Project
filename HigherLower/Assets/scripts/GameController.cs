@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * Title: Gesture Based UI Development Project
+ * Discription: A script to controll the game logic 
+ * Adapted from: https://www.youtube.com/watch?v=FxH8FoddkVY&list=PLZo2FfoMkJeE6GXx8cEUeR9KzItTvaKlz
+ * @Author: Kevin Gleeson
+ * Version: 1.0
+ * Date: 1/04/2019
+ * 
+ */
 public class GameController : MonoBehaviour
 {
     // used to turn the first card face down

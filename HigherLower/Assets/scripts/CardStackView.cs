@@ -2,6 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ * Title: Gesture Based UI Development Project
+ * Discription: A scrript to control the in game view of the card sprites.
+ * Adapted from: https://www.youtube.com/watch?v=FxH8FoddkVY&list=PLZo2FfoMkJeE6GXx8cEUeR9KzItTvaKlz
+ * @Author: Kevin Gleeson
+ * Version: 1.0
+ * Date: 1/04/2019
+ * 
+ */
 // Enforce the need for the CardStack object
 [RequireComponent(typeof(CardStack))]
 public class CardStackView : MonoBehaviour
