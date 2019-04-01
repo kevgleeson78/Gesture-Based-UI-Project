@@ -2,22 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
-
+/*
+ * A class to get the card sprite game objects
+ * 
+ * 
+ * */
 public class CardModel : MonoBehaviour {
     SpriteRenderer spriteRenderer;
+    // And array of the card sprites split from the original pdf in the sprite editor.
     public Sprite[] card;
+    // The single card back sprite.
     public Sprite cardBack;
-
+    // Fro applying each card sprite to the card Sprite array.
     public int cardIndex;
 
-
+    // Unity editor option for showing the front or back of the card
     public void ToggleFace(bool showFace)
     {
-
+        // If check show the card value
         if (showFace)
         {
             spriteRenderer.sprite = card[cardIndex];
         }
+        // If not checked show the crad back.
         else
         {
             spriteRenderer.sprite = cardBack;

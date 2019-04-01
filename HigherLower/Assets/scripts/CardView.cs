@@ -1,7 +1,7 @@
 ﻿
 
 using UnityEngine;
-
+// Just a simple game object class to toggle cards face up or face down
 public  class CardView
     {
     public GameObject Card { get; private set; }
