@@ -25,16 +25,29 @@ public class GameController : MonoBehaviour
     public Text winnerText;
     // Boolean to controll head gesture input on game over
     public bool gameOver = false;
-
+    public Text playerScore;
+    public Text dealerScore;
     // Hit (Twist) function for the player
+    void UpdatePlayerScore()
+    {
+        playerScore.text = "Player Score: "+player.HandValue().ToString();
+    }
+    void UpdateDealerScore()
+    {
+        dealerScore.text = "Dealer Score: "+dealer.HandValue().ToString();
+    }
     public void Hit()
     {
+        
         // Push a card from the stack to the players cards
         // Remove the card from the deck stack
         player.Push(deck.Pop());
+        UpdatePlayerScore();
+
         // Check if the player has gone bust
         if (player.HandValue() > 21)
         {
+           
             // Trun off the head gesture 
             noddable = false;
            // Start the deealers turn to show there cards
@@ -64,9 +77,10 @@ public class GameController : MonoBehaviour
         deck.CreateDeck();
         // clear the end of game text
         winnerText.text = "";
+        dealerScore.text = "";
         // reset the dealers first card to face down
         dealersFirstCard = -1;
-
+        
         // Start a new game
         StartGame();
       
@@ -77,15 +91,18 @@ public class GameController : MonoBehaviour
     }
     void StartGame()
     {
+        
         // Deal two card each to the player and dealer form the shuffeld deck
         for (int i = 0; i < 2; i++)
         {
             player.Push(deck.Pop());
+            UpdatePlayerScore();
             HitDealer();
         }
     }
     void HitDealer()
     {
+        
         int card = deck.Pop();
         // set the dealser first card to face down
         // Coverd with the card back sprite
@@ -111,6 +128,7 @@ public class GameController : MonoBehaviour
         // Show the dealers first card.
         view.Toggle(dealersFirstCard, true);
         view.ShowCards();
+        UpdateDealerScore();
         // Delay showing the dealers card every one second for a new card
         yield return new WaitForSeconds(1f);
         // Keep going while teh dealers hand is worth at least 16.
@@ -119,6 +137,7 @@ public class GameController : MonoBehaviour
         {
             // New card for the dealer
             HitDealer();
+            UpdateDealerScore();
             // Wait for one second
             yield return new WaitForSeconds(1f);
         }

@@ -29,7 +29,7 @@ public class HeadGuestures : MonoBehaviour
     // Initial angle of the camera view on start. Reset after each gesture recognised.
     private Vector3 centerAngle;
     // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
-    private float dist = 10.0f;
+    private float dist = 8.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +47,7 @@ public class HeadGuestures : MonoBehaviour
         // The gesture has to register in this time frame
         index++;
         // check state every 60 frames
-        if (index  == 60)
+        if (index  == 40)
         {
             // Check movement function
             CheckMovement();
@@ -64,12 +64,13 @@ public class HeadGuestures : MonoBehaviour
        // Boolean control for yes no recognition
         bool right = false, left = false, up = false, down = false;
         // Check the position of rotaion 
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 40; i++)
         {
             // Conditions for up and down gesture "Yes"
             // true if the distance is greater than the 
             // pre-defined dist variable
             //!up to ensure that ther has been no other up triggered.
+            
             if (angles[i].x < centerAngle.x - dist && !down)
             {
                 down = true;
@@ -91,15 +92,17 @@ public class HeadGuestures : MonoBehaviour
         // !(up && down) = Stop mulitple gestures being recognised. only left and right.
         if (left && right && !(up && down))
         {
+            left = false;
+            right = false;
             Debug.Log("gesture = NO");
             // Check if the noddable boolean is set to true.
             // From the GameController script
-            if (gc.noddable)
+            if (gc.noddable == true)
             {   //Call the Stick() function from the GameController script
                 gc.Stick();
                 // Its now the dealers turn...
             }
-            if (gc.gameOver)
+            if (gc.gameOver == true)
             {
                 // Android close icon or back button tapped.
                 Application.Quit();
@@ -109,17 +112,19 @@ public class HeadGuestures : MonoBehaviour
         // Yes gesture and not NO.
         if (up && down && !(left && right))
         {
+            up = false;
+            down = false;
             Debug.Log("Gesture =  YES");
             // GvrCardboardHelpers.Recenter();
             // Condition to check if the game is still in play 
             // and accepting noddable gestures
-            if (gc.noddable && !gc.gameOver)
+            if (gc.noddable == true && gc.gameOver == false)
             {
                 // Twist option with nodding yes.
                 gc.Hit();
             }
             // If its game over 
-            if (gc.gameOver)
+            if (gc.gameOver == true)
             {
                 // Play again if yes gesture us detected from above condition.
                 gc.PlayAgain();
@@ -129,7 +134,7 @@ public class HeadGuestures : MonoBehaviour
     void ResetGesture()
     {
         // Reset the angle of the camera to listen out fro a new gesture
-        angles = new Vector3[60];
+        angles = new Vector3[40];
         // reset the index from the update function.
         index = 0;
         // Reset the center angle of the camera.
