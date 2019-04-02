@@ -26,7 +26,7 @@ public class HeadGuestures : MonoBehaviour
     // Index for update function
     private int index;
     // Center angle of device
-    // For resetting after head gesture has been recognised.
+    // Initial angle of the camera view on start. Reset after each gesture recognised.
     private Vector3 centerAngle;
     // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
     private float dist = 10.0f;
@@ -52,9 +52,8 @@ public class HeadGuestures : MonoBehaviour
             // Check movement function
             CheckMovement();
 
-            // reset the gesture to zero.
+            // reset the camera refference point and update index.
             ResetGesture();
-
 
         }
     }
@@ -89,7 +88,7 @@ public class HeadGuestures : MonoBehaviour
             }
         }
         // If gesture is NO and not yes
-        // Stop mulitple gestures being recognised
+        // !(up && down) = Stop mulitple gestures being recognised. only left and right.
         if (left && right && !(up && down))
         {
             Debug.Log("gesture = NO");
