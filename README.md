@@ -39,7 +39,7 @@ Here is an article on unity forums explaining the problem [Link Here](https://an
 
 ### New Plan
 After researching what my model of phone was capable of for gesture bsed development I foud Google Cardboard was a possibility.
-I had a talk with my lecturer Damien Costello and we discussed VR and head gestures controlling a card game.
+I had a talk with my lecturer and we discussed VR and head gestures controlling a card game.
 From this conversation I had the idea of creating a blackjack game that would be controlled by head guestures.
 
 In the sections below I will discuss how I went about developing the game along with implementing the head gesture recognition for the system.
