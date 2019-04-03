@@ -29,8 +29,9 @@ public class HeadGuestures : MonoBehaviour
     // Initial angle of the camera view on start. Reset after each gesture recognised.
     private Vector3 centerAngle;
     // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
-    private float dist = 8.0f;
+    private float dist = 4.0f;
     // Start is called before the first frame update
+    private bool right = false, left = false, up = false, down = false;
     void Start()
     {
         // reset the gesture after trigger
@@ -47,8 +48,9 @@ public class HeadGuestures : MonoBehaviour
         // The gesture has to register in this time frame
         index++;
         // check state every 60 frames
-        if (index  == 40)
+        if (index  == 50)
         {
+            right = false; left = false; up = false; down = false;
             // Check movement function
             CheckMovement();
 
@@ -62,9 +64,9 @@ public class HeadGuestures : MonoBehaviour
     {
        // Debug.Log("Method Called...");
        // Boolean control for yes no recognition
-        bool right = false, left = false, up = false, down = false;
+        
         // Check the position of rotaion 
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 50; i++)
         {
             // Conditions for up and down gesture "Yes"
             // true if the distance is greater than the 
@@ -92,8 +94,7 @@ public class HeadGuestures : MonoBehaviour
         // !(up && down) = Stop mulitple gestures being recognised. only left and right.
         if (left && right && !(up && down))
         {
-            left = false;
-            right = false;
+            
             Debug.Log("gesture = NO");
             // Check if the noddable boolean is set to true.
             // From the GameController script
@@ -112,8 +113,7 @@ public class HeadGuestures : MonoBehaviour
         // Yes gesture and not NO.
         if (up && down && !(left && right))
         {
-            up = false;
-            down = false;
+           
             Debug.Log("Gesture =  YES");
             // GvrCardboardHelpers.Recenter();
             // Condition to check if the game is still in play 
@@ -134,7 +134,7 @@ public class HeadGuestures : MonoBehaviour
     void ResetGesture()
     {
         // Reset the angle of the camera to listen out fro a new gesture
-        angles = new Vector3[40];
+        angles = new Vector3[50];
         // reset the index from the update function.
         index = 0;
         // Reset the center angle of the camera.
