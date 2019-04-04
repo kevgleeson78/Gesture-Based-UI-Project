@@ -30,6 +30,7 @@ public class HeadGuestures : MonoBehaviour
     private Vector3 centerAngle;
     // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
     private float dist = 7.0f;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +48,7 @@ public class HeadGuestures : MonoBehaviour
         // The gesture has to register in this time frame
         index++;
         // check state every 60 frames
-        if (index == 10)
+        if (index == 30)
         {
             // Check movement function
             CheckMovement();
@@ -60,13 +61,17 @@ public class HeadGuestures : MonoBehaviour
     }
     void ResetGesture()
     {
-
+        
+      
         // Reset the center angle of the camera.
+
         centerAngle = Camera.main.transform.eulerAngles;
+        
         // Reset the angle of the camera to listen out fro a new gesture
-        angles = new Vector3[10];
+        angles = new Vector3[80];
         // reset the index from the update function.
         index = 0;
+        
        
     }
     private void CheckMovement()
@@ -75,7 +80,7 @@ public class HeadGuestures : MonoBehaviour
         // Boolean control for yes no recognition
         bool right = false, left = false, up = false, down = false;
         // Check the position of rotaion 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 80; i++)
         {
             // Conditions for up and down gesture "Yes"
             // true if the distance is greater than the 
@@ -103,7 +108,7 @@ public class HeadGuestures : MonoBehaviour
         // Stop mulitple gestures being recognised
         if (left && right && !(up && down))
         {
-            Debug.Log("gesture = NO");
+            //Debug.Log("gesture = NO");
             // Check if the noddable boolean is set to true.
             // From the GameController script
             if (gc.noddable)
@@ -121,7 +126,8 @@ public class HeadGuestures : MonoBehaviour
         // Yes gesture and not NO.
         if (up && down && !(left && right))
         {
-            Debug.Log("Gesture =  YES");
+            
+            //Debug.Log("Gesture =  YES");
             // GvrCardboardHelpers.Recenter();
             // Condition to check if the game is still in play 
             // and accepting noddable gestures
@@ -129,12 +135,14 @@ public class HeadGuestures : MonoBehaviour
             {
                 // Twist option with nodding yes.
                 gc.Hit();
+               
             }
             // If its game over 
             if (gc.gameOver)
             {
                 // Play again if yes gesture us detected from above condition.
                 gc.PlayAgain();
+                
             }
         }
     }
