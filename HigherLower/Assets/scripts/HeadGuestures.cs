@@ -26,12 +26,11 @@ public class HeadGuestures : MonoBehaviour
     // Index for update function
     private int index;
     // Center angle of device
-    // Initial angle of the camera view on start. Reset after each gesture recognised.
+    // For resetting after head gesture has been recognised.
     private Vector3 centerAngle;
     // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
-    private float dist = 4.0f;
+    private float dist = 7.0f;
     // Start is called before the first frame update
-    private bool right = false, left = false, up = false, down = false;
     void Start()
     {
         // reset the gesture after trigger
@@ -48,35 +47,45 @@ public class HeadGuestures : MonoBehaviour
         // The gesture has to register in this time frame
         index++;
         // check state every 60 frames
-        if (index  == 50)
+        if (index == 10)
         {
-            right = false; left = false; up = false; down = false;
             // Check movement function
             CheckMovement();
 
-            // reset the camera refference point and update index.
+            // reset the gesture to zero.
             ResetGesture();
+
 
         }
     }
+    void ResetGesture()
+    {
 
+        // Reset the center angle of the camera.
+        centerAngle = Camera.main.transform.eulerAngles;
+        // Reset the angle of the camera to listen out fro a new gesture
+        angles = new Vector3[10];
+        // reset the index from the update function.
+        index = 0;
+       
+    }
     private void CheckMovement()
     {
-       // Debug.Log("Method Called...");
-       // Boolean control for yes no recognition
-        
+        // Debug.Log("Method Called...");
+        // Boolean control for yes no recognition
+        bool right = false, left = false, up = false, down = false;
         // Check the position of rotaion 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 10; i++)
         {
             // Conditions for up and down gesture "Yes"
             // true if the distance is greater than the 
             // pre-defined dist variable
             //!up to ensure that ther has been no other up triggered.
-            
             if (angles[i].x < centerAngle.x - dist && !down)
             {
                 down = true;
-            }else if (angles[i].x > centerAngle.x + dist && !up)
+            }
+            else if (angles[i].x > centerAngle.x + dist && !up)
             {
                 up = true;
             }
@@ -91,19 +100,18 @@ public class HeadGuestures : MonoBehaviour
             }
         }
         // If gesture is NO and not yes
-        // !(up && down) = Stop mulitple gestures being recognised. only left and right.
+        // Stop mulitple gestures being recognised
         if (left && right && !(up && down))
         {
-            
             Debug.Log("gesture = NO");
             // Check if the noddable boolean is set to true.
             // From the GameController script
-            if (gc.noddable == true)
+            if (gc.noddable)
             {   //Call the Stick() function from the GameController script
                 gc.Stick();
                 // Its now the dealers turn...
             }
-            if (gc.gameOver == true)
+            if (gc.gameOver)
             {
                 // Android close icon or back button tapped.
                 Application.Quit();
@@ -113,32 +121,22 @@ public class HeadGuestures : MonoBehaviour
         // Yes gesture and not NO.
         if (up && down && !(left && right))
         {
-           
             Debug.Log("Gesture =  YES");
             // GvrCardboardHelpers.Recenter();
             // Condition to check if the game is still in play 
             // and accepting noddable gestures
-            if (gc.noddable == true && gc.gameOver == false)
+            if (gc.noddable && !gc.gameOver)
             {
                 // Twist option with nodding yes.
                 gc.Hit();
             }
             // If its game over 
-            if (gc.gameOver == true)
+            if (gc.gameOver)
             {
                 // Play again if yes gesture us detected from above condition.
                 gc.PlayAgain();
             }
         }
     }
-    void ResetGesture()
-    {
-        // Reset the angle of the camera to listen out fro a new gesture
-        angles = new Vector3[50];
-        // reset the index from the update function.
-        index = 0;
-        // Reset the center angle of the camera.
-        centerAngle = Camera.main.transform.eulerAngles;
-       
-    }
+   
 }

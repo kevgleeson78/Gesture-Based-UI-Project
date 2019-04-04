@@ -156,8 +156,7 @@ public class GameController : MonoBehaviour
         {
             winnerText.text = "House wins\n Play again Yes / No";
         }
-        // Delay one second
-        yield return new WaitForSeconds(1f);
+        
        // Set game over to true
         gameOver = true;
         
