@@ -79,6 +79,14 @@ The application is compiled and built to an andriod device with unity.
 A VR headset is used to view the game when the application is run on the device.
 
 
+### Development
+
+When first developing the blackjack portion of the application buttons were used for click events of stick, twist and play again.
+<img src="images/buttons.png">
+These buttons triggering the stick, twist and play again will eventually be removed once the game functions have been verified as working.
+
+These functions will then be mapped to yes and no head gestures.
+
 ### Architecture for the solution
 
 
