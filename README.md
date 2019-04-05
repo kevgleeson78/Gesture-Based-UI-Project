@@ -86,39 +86,52 @@ When first developing the blackjack portion of the application buttons were used
 These buttons triggering the stick, twist and play again will eventually be removed once the game functions have been verified as working.
 
 These functions will then be mapped to yes and no head gestures.
+### Black Jack game development
 
-### Stick, Twist, Play Agian methods
+#### Sprites:
 
-#### Stick:
+#### Prefabs
 
+### Game controlller
+
+#### Shuffling the deck
+
+#### Adding Values to the cards
+
+#### Handling the ace card value
+
+#### Players turn
 
 #### Twist:
 
-#### Play again:
+#### Stick:
 
+#### Dealers turn
 
-### Yes no head gestures
+#### Game over conditions
+
+#### Play again
+
+### Yes no head gesture development
+
+#### Camera angle 
+
+#### Boolean triggers
 
 #### Yes head gesture:
 
 #### No head gesture:
 
-
-### Bringing the two elements together
-
-
+####  Bringing the two elements together
 
 ### Architecture for the solution
 
-
-
 ### Conclusions & Recommendations
-#### Problems while developing
 
-#### Further development 
+### Problems while developing
 
+### Further development 
 
-##### 
 ### Resources
 
 
