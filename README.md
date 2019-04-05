@@ -87,12 +87,38 @@ These buttons triggering the stick, twist and play again will eventually be remo
 
 These functions will then be mapped to yes and no head gestures.
 
+### Stick, Twist, Play Agian methods
+
+#### Stick:
+
+
+#### Twist:
+
+#### Play again:
+
+
+### Yes no head gestures
+
+#### Yes head gesture:
+
+#### No head gesture:
+
+
+### Bringing the two elements together
+
+
+
 ### Architecture for the solution
 
 
 
 ### Conclusions & Recommendations
+#### Problems while developing
 
+#### Further development 
+
+
+##### 
 ### Resources
 
 
