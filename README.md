@@ -47,7 +47,7 @@ In the sections below I will discuss how I went about developing the game along 
 ### Purpose of the application
 The purpose of this application is to allow a user to control a card game while using only head gestures.
 
-<img src="images/mockup.pdf.png">
+<img src="images/New Mockup 1.png">
 
 The card game will be presented to the user via an app on their mobile phone.
 This app is a virtual reallity environment using Google VR.
