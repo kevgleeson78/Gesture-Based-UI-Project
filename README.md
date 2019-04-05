@@ -58,7 +58,7 @@ With this data we can then capture head gestures and map them to actions within 
 
 
 ### Gestures identified as appropriate for this application
-The gestures chosen fro this application are yes and no head movements.
+The gestures chosen for this application are yes and no head movements.
 
 Yes moving head up and down and No by moving head left and right.
 
@@ -68,12 +68,20 @@ The head gesture of yes triggering the twist function and giving the player a ne
 
 The head gesture of no triggering the stick function and activating the dealers turn function.
 
-When the round of cards ahs finished the user is presented with a message if they have won or not and the option to play again or ecit the application. The yes head gesture will play again and the no getsure will exit the application.
+When the game of black jack has finished the user is presented with a message if they have won or not and the option to play again or exit the application. 
+
+The yes head gesture will play again and the no getsure will exit the application.
 
 
 ### Hardware used in creating the application
+The application is compiled and built to an andriod device with unity.
+
+A VR headset is used to view the game when the application is run on the device.
+
 
 ### Architecture for the solution
+
+
 
 ### Conclusions & Recommendations
 
