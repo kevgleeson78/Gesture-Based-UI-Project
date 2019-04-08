@@ -104,7 +104,7 @@ public class GameController : MonoBehaviour
     {
         
         int card = deck.Pop();
-        // set the dealser first card to face down
+        // set the dealers first card to face down
         // Coverd with the card back sprite
         if (dealersFirstCard < 0)
         {

@@ -47,7 +47,7 @@ public class HeadGuestures : MonoBehaviour
         // Increment the index for every update.
         // The gesture has to register in this time frame
         index++;
-        // check state every 60 frames
+        // check state every 30 frames
         if (index == 30)
         {
             // Check movement function
