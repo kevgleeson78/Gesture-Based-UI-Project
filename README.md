@@ -498,17 +498,82 @@ The dealer score and game over message are set to an empty string to clear the s
       
     }
 ```
-
-
-
-
-
 ### Yes no head gesture development
 
+### Google VR library for unity
+
+The Google VR library for unity was used to track the users head movement when the application is running in their phone and the phone is atttached to a VR headset.
+
+#### Boolean triggers and CheckMovement method
+
+To achieve triggering the head gesture of yes and no  there are four boolen variable of up, down, left and right initialised to false .
+These four variables are held locally within the CeckMovement Method.
+```C#
+private void CheckMovement()
+    {
+        // Debug.Log("Method Called...");
+        // Boolean control for yes no recognition
+        bool right = false, left = false, up = false, down = false;
+```
+The check movement method is responsible for setting the above four variables to true if conditions are met.
+These conditions will be explianed in the next sections.
+
 #### Camera angle 
+The angle of the camera view is used to get the angle of rotation based on the positon of the users head (Where they are looking in the VR space)
+Teh cameras euler angles are gather by usuing the following method:
+```C#
+Camera.main.transform.eulerAngles;
+```
+This can then be used to measure how far the head is away from a fixed point on either the x or y axis.
 
-#### Boolean triggers
+First variables are globally declared to hold:
+- An array of Vector3 cordiantes 
+- an index variable to set the amount of time that is to pass before the head positon is read and then reset.
+- A Vector3 cordinate centerAngle variable, a fixed position that will be used to measure how far away the cameras rotation along either the x or y axis is.
+- A float variable named dist that will be used to set the accepted distance where once passed will set the boolean values of up, down, left, right to true.
 
+```C#
+ // Vector3 array to angle of device
+    private Vector3[] angles;
+    // Index for update function
+    private int index;
+    // Center angle of device
+    // For resetting after head gesture has been recognised.
+    private Vector3 centerAngle;
+    // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
+    private float dist = 7.0f;
+```
+#### Storing the euler angles of the users head position 
+To access the users head position over time an array is used to store the angle of rotation inside unitys update function.
+
+Each tiome update function is called the users head position is stored in the globally declared angles array.
+
+The index of this array is incremented each time the update function is called and set to the angles array.
+
+```C#
+void Update()
+    {
+        // Get the angle of the device relative to the the camera position
+        // New to the latest version of GVR.
+        angles[index] = Camera.main.transform.eulerAngles;
+        // Increment the index for every update.
+        // The gesture has to register in this time frame
+        index++;
+        // check state every 30 frames
+        if (index == 30)
+        {
+            // Check movement function
+            CheckMovement();
+
+            // reset the gesture to zero.
+            ResetGesture();
+
+
+        }
+    }
+```
+
+This gives us an array of angles that we can check against to see if the head ahas passed the pre-set treshold that will set boolean values of up, down, left or right to true.
 #### Yes head gesture:
 
 #### No head gesture:
