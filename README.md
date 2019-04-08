@@ -106,11 +106,117 @@ These are made publicaly available from the Game controller script.
 ```
 
 A boolean variable of noddable is used to control if the player is allowed to used head gestures.
-If the player has chosen to stick they should not be able to twist a card.
+If the player has chosen to stick or there score is greater than 21 they should not be able to twist a card.
+```C#
+// Boolean to controll the gesture input
+    public bool noddable = true;
+```
+
+A Boolean variable of gameover is used to check if the game has ended to allow the player to choose to play again or quit the application.
+
+```C#    
+    // Boolean to controll head gesture input on game over
+    public bool gameOver = false;
+ ```
+ 
+ #### Update player/dealer score functions
+ 
+ When the player chooses to twist the score UI gets updated based on the totlat value of the cards they have in their hand.
+ 
+ The UpdatePlayerScore/UpdateDealerScore functions:
+ ```C#
+ void UpdatePlayerScore()
+    {
+        playerScore.text = "Player Score: "+player.HandValue().ToString();
+    }
+    void UpdateDealerScore()
+    {
+        dealerScore.text = "Dealer Score: "+dealer.HandValue().ToString();
+    }
+ ```
+ 
+ The above functions get called in their relevant methods of Hit() and DealersTurn()
+ ```C#
+ public void Hit()
+    {
+        
+        // Push a card from the stack to the players cards
+        // Remove the card from the deck stack
+        player.Push(deck.Pop());
+        UpdatePlayerScore();
+
+        // Check if the player has gone bust
+        if (player.HandValue() > 21)
+        {
+           
+            // Trun off the head gesture 
+            noddable = false;
+           // Start the deealers turn to show there cards
+            StartCoroutine(DealersTurn());
+        }
+    }
+ ```
+ 
+ ```C#
+ IEnumerator DealersTurn()
+    {
+        // Turn off head gestures for the dealers turn
+        noddable = false;
+       
+        CardStackView view = dealer.GetComponent<CardStackView>();
+        // Show the dealers first card.
+        view.Toggle(dealersFirstCard, true);
+        view.ShowCards();
+        UpdateDealerScore();
+        // Delay showing the dealers card every one second for a new card
+        yield return new WaitForSeconds(1f);
+        // Keep going while teh dealers hand is worth at least 16.
+        // And keep going while the dealers scroe is less than the players score.
+        while (dealer.HandValue() < 17 || dealer.HandValue() < player.HandValue())
+        {
+            // New card for the dealer
+            HitDealer();
+            UpdateDealerScore();
+            // Wait for one second
+            yield return new WaitForSeconds(1f);
+        }
+ ```
+#### UI messages
+
+Three UI text variables are used to display to the user the:
+- player score
+- dealer score
+- Winning/loosing text message.
+```C#
+ // Displays the message to the user after the game has ended
+    public Text winnerText;
+    public Text playerScore;
+    public Text dealerScore;
+```
+
+
 #### Shuffling the deck
 To shuffle the deck of cards the fisher yates shuffle algorithm is used.
 
+The algorithm works by starting at the beginning of an array in our case it will be the array holding the deck of cards.
+
+A random number is generated from 0 - 51.
+
+Suppose 34 is generated the card at index 34 is swaped with the card at index 0.
+
+The algorithm then moves to index 1.
+
+A random number is then generated between 0 - 51.
+
+If 22 is randomly chosen the card at index 22 is swapped with the card at index 1.
+
+This repeats unitl we have moved to the last element in the array at 51.
+
+
+
+
 #### Adding Values to the cards
+Teh card stack script controlls the values of each card.
 Each card image in the 
 #### Handling the ace card value
 
@@ -123,7 +229,32 @@ Each card image in the
 #### Dealers turn
 
 #### Game over conditions
+The game checked inside the DealersTurn() function with conditional checks to see if the player hand value is gretaer than the dealer.
+- The dealer must twist as long as habd value is at 16 or below.
+- The dealer must attempt to get a higher or equal value of the playuer hand.
+- The message is finally desplayed to the use once the dealer has completed their turn.
+- Once the dealers turn is over the gameover vairable is set to true to allow the user to choose to play again or quit the game.
 
+```C#
+// End game conditions Loose
+        if (player.HandValue() > 21 || (dealer.HandValue() >= player.HandValue() && dealer.HandValue() <=21))
+        {
+            winnerText.text = "You have lost!!!!\n Play again Yes / No";
+        }
+        // End game conditions Win
+        else if (dealer.HandValue() > 21 || (player.HandValue() <=21 && player.HandValue() > dealer.HandValue()))
+        {
+            winnerText.text = "You Have Won!!!\n Play again Yes / No";
+        }
+        // End game conditions Fallback
+        else
+        {
+            winnerText.text = "House wins\n Play again Yes / No";
+        }
+        
+       // Set game over to true
+        gameOver = true;
+```
 #### Play again
 
 ### Yes no head gesture development
