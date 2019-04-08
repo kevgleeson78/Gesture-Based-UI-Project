@@ -3,6 +3,32 @@ This project is a 4th year assignment for the module Gesture Based UI Developmen
 At [GMIT](www.gmit.ie) Galway
 Author: Kevin Gleeson
 ## Link to youtube demo [HERE](https://www.youtube.com/watch?v=qdQGHUeOEsk)
+
+## Running the application
+
+Please follow the steps below to run the application on oyur andriod device.
+
+### You will need an andriod mobile device along with a VR headset inorder to use this application.
+
+1. Clone this repository then connect you android device to your pc.
+
+2. Once cloned you will find an APK file named test.apk.
+
+3. Connect oyur android device to your pc via usb.
+
+4. Coppy the file over to your devices root directory.
+
+5. Disconnect yopur andriod device from your pc.
+
+6. Locate the apk file on your mobile device clcik on it and install when prompted.
+
+7. You may be warned about the security of the unknown apk file you will have to allow it ro run just follwo the instruction th e device gives yo to allow it to run. It  may vary between devices.
+
+8. Start the application on your device
+
+9. Put your mobile into a VR headset and enjoy!!!!!
+
+
 ## Overview
 For this module we were given an open ended project that integrates gesture based user interatcion with an application.
 Uisng voice commands hand or head gestures to control an object via a software framework.
