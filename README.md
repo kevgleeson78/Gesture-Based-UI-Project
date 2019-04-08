@@ -802,7 +802,9 @@ If game over is true and a no gesture us detected the application is terminated.
 ```
 
 ### Architecture for the solution
+Below is a class digram of each script contained within the application.
 
+<img src="images/ClassDiagram1.png">
 ### Conclusions & Recommendations
 
 ### Problems while developing
