@@ -212,14 +212,122 @@ If 22 is randomly chosen the card at index 22 is swapped with the card at index 
 
 This repeats unitl we have moved to the last element in the array at 51.
 
+```C#
+ // Creating the shuffled deck of cards
+    public void CreateDeck()
+    {
+        // Clear the cards array
+        cards.Clear();
+     
+        //Add the 1 - 52 to the cards array
+        for (int i = 0; i < 52; i++)
+        {
+            cards.Add(i);
+        }
 
+        int n = cards.Count;
+        // Fisher yates shuffle
+        while (n > 1)
+        {
+            //decrement the counter by one
+            n--;
+            // Pick a ranndom number between the current size of the array.
+            int k = Random.Range(0, n+1);
+            //store random value 
+            int temp = cards[k];
+            // assign to 52nd slot on first pass the random value to n. 
+            //(n will decrease by one after ech recursive call)  
+            cards[k] = cards[n];
+            // Finally add the random index to the cards array
+            cards[n] = temp;
+        }
+    }
+```
 
 
 #### Adding Values to the cards
 Teh card stack script controlls the values of each card.
-Each card image in the 
-#### Handling the ace card value
+The full list of cards are held in an array.
+THe cards are ordered from (ace, 2, 3 ... , King).
 
+Therefore a mod 13 operator can be used to get each card within the array.
+The first card from each suit is ignored as they are aces.
+
+We will deal with giving the value to an ace further down this function.
+
+First off the cards between 2 and 9 are givne there face values.
+
+Then the Jack, Queen and King are given a value of ten.
+
+
+
+
+```C#
+// Set the value of the cards
+    public int HandValue()
+    {
+        // Keep track of the cards
+        int total = 0;
+        int aces = 0;
+        //loop through the card array.
+        foreach(int card in GetCards())
+        {
+            // All card are stored from ace to king in each suit
+            // % 13 will split them up into indvidual values
+            int cardRank = card % 13;
+            // 0 = ace 
+            // Get values from 2 - 9 excluding ace, king, queen  and jack
+            if(cardRank <= 9 && cardRank > 0)
+            {
+                cardRank += 1;
+                // total the value
+                // This is use to calculate the player and dealer score
+                total = total + cardRank;
+            }
+            // set the values for king, queen , jack (all = 10).
+            else if(cardRank >9 && cardRank <= 12)
+            {
+                cardRank = 10;
+                // Add to the total score
+                total = total + cardRank;
+            }
+            else
+            {
+                // Count the aces
+                aces++;
+            }
+
+            
+        }
+```
+
+#### Handling the ace card value
+The aces have to be accounted fro as a value of 1 if the totla score of the player or dealer hand is less than 21.
+
+IF the player or dealer hand is greater than 21 the ace gets a value of one.
+
+The total score is recorder by the total variable.
+```C#
+        // for the different possible values the ace can have either a one or eleven.
+        for (int i = 0; i < aces; i++)
+        {
+            // check if the the current score is less than or equal to 21
+            if (total+11 <= 21)
+            {
+                // Ace == 11 if above condition is true
+                total = total + 11;
+            }
+            else
+            {
+                // Ace is worth one if false.
+                total = total + 1;
+            }
+        }
+
+        // The final score
+        return total;
+    }
+```
 #### Players turn
 
 #### Twist:
