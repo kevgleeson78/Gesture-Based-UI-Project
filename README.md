@@ -543,7 +543,7 @@ First variables are globally declared to hold:
     // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
     private float dist = 7.0f;
 ```
-#### Storing the euler angles of the users head position 
+#### Storing euler angles of the users head position 
 To access the users head position over time an array is used to store the angle of rotation inside unitys update function.
 
 Each tiome update function is called the users head position is stored in the globally declared angles array.
@@ -575,8 +575,117 @@ void Update()
 
 This gives us an array of angles that we can check against to see if the head ahas passed the pre-set treshold that will set boolean values of up, down, left or right to true.
 #### Yes head gesture:
+The yes head gesture is triggered if the up and down boolean variables are true.
 
+This is achieved by looping through the angles array populated above by the update function andf comparing the distance between the center fixed angle and the head position angle in the array.
+
+This is measured along the x axis.
+
+If the  pre-set distacnce - center angle is grater than the angle of the head position angkes array the treshoild has been passed and down gets set to true.
+
+
+The oposite is checked for upward motion:
+
+If the pe-set distance  + the fixed center angle  is les than the index of the array of head positions teh treshold for up has been passed and up gets set to true.
+
+```C#
+for (int i = 0; i < 80; i++)
+        {
+            // Conditions for up and down gesture "Yes"
+            // true if the distance is greater than the 
+            // pre-defined dist variable
+            //!up to ensure that ther has been no other up triggered.
+            if (angles[i].x < centerAngle.x - dist && !down)
+            {
+                down = true;
+            }
+            else if (angles[i].x > centerAngle.x + dist && !up)
+            {
+                up = true;
+            }
+```
+
+ The combination of up and down are evaluated within an if statement and if true we have a yes gesture.
+ 
+ This can then be used to call the methods we need.
+ 
+ ```C#
+ // Yes gesture and not NO.
+        if (up && down && !(left && right))
+        {
+            
+            //Debug.Log("Gesture =  YES");
+            // GvrCardboardHelpers.Recenter();
+            // Condition to check if the game is still in play 
+            // and accepting noddable gestures
+            if (gc.noddable && !gc.gameOver)
+            {
+                // Twist option with nodding yes.
+                gc.Hit();
+               
+            }
+            // If its game over 
+            if (gc.gameOver)
+            {
+                // Play again if yes gesture us detected from above condition.
+                gc.PlayAgain();
+                
+            }
+        }
+ ```
 #### No head gesture:
+The no head gesture of left and right movement is measured along the y axis and compared to the fixed center euler angle.
+
+For left to be true:
+
+The fixed center angle on the y axis - the pre-set distance should be greater than one of the angles with the euler angle (angles array).
+
+For right to be true:
+The fixed center angle on the y axis - the pre-set distance should be less than one of the angles with the euler angle (angles array).
+```C#
+  // Check the position of rotaion 
+        for (int i = 0; i < 80; i++)
+        {
+         
+            // Conditions for Left/Right movement "No" Gesture.
+            if (angles[i].y < centerAngle.y - dist && !left)
+            {
+                left = true;
+            }
+            else if (angles[i].y > centerAngle.y + dist && !right)
+            {
+                right = true;
+            }
+        }
+```
+
+Finally a combination of both left and right boolean values are checked, if they are both true this is a no gesture.
+
+This can then be used to call what ever method we neeed inside this conditional:
+
+```C#
+  // If gesture is NO and not yes
+        // Stop mulitple gestures being recognised
+        if (left && right && !(up && down))
+        {
+            //Debug.Log("gesture = NO");
+            // Check if the noddable boolean is set to true.
+            // From the GameController script
+            if (gc.noddable)
+            {   //Call the Stick() function from the GameController script
+                gc.Stick();
+                // Its now the dealers turn...
+            }
+            if (gc.gameOver)
+            {
+                // Android close icon or back button tapped.
+                Application.Quit();
+            }
+            //GvrCardboardHelpers.Recenter();
+        }
+```
+
+#### Resetting the gestures:
 
 ####  Bringing the two elements together
 
