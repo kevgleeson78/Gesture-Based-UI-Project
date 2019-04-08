@@ -134,53 +134,8 @@ A Boolean variable of gameover is used to check if the game has ended to allow t
         dealerScore.text = "Dealer Score: "+dealer.HandValue().ToString();
     }
  ```
+ These functions get called in the player and dealer turn functions described below in the palyer and dealer turn sections.
  
- The above functions get called in their relevant methods of Hit() and DealersTurn()
- ```C#
- public void Hit()
-    {
-        
-        // Push a card from the stack to the players cards
-        // Remove the card from the deck stack
-        player.Push(deck.Pop());
-        UpdatePlayerScore();
-
-        // Check if the player has gone bust
-        if (player.HandValue() > 21)
-        {
-           
-            // Trun off the head gesture 
-            noddable = false;
-           // Start the deealers turn to show there cards
-            StartCoroutine(DealersTurn());
-        }
-    }
- ```
- 
- ```C#
- IEnumerator DealersTurn()
-    {
-        // Turn off head gestures for the dealers turn
-        noddable = false;
-       
-        CardStackView view = dealer.GetComponent<CardStackView>();
-        // Show the dealers first card.
-        view.Toggle(dealersFirstCard, true);
-        view.ShowCards();
-        UpdateDealerScore();
-        // Delay showing the dealers card every one second for a new card
-        yield return new WaitForSeconds(1f);
-        // Keep going while teh dealers hand is worth at least 16.
-        // And keep going while the dealers scroe is less than the players score.
-        while (dealer.HandValue() < 17 || dealer.HandValue() < player.HandValue())
-        {
-            // New card for the dealer
-            HitDealer();
-            UpdateDealerScore();
-            // Wait for one second
-            yield return new WaitForSeconds(1f);
-        }
- ```
 #### UI messages
 
 Three UI text variables are used to display to the user the:
@@ -330,12 +285,102 @@ The total score is recorder by the total variable.
 ```
 #### Players turn
 
+ At the start of each game the cards are delt to the player and dealer.
+ The StartGame function is used to deal two cards to the player and dealer with push and pop methods use to take a card from the main deck and place them in the dealer and player deck array.
+ 
+ ```C#
+ void StartGame()
+    {
+        
+        // Deal two card each to the player and dealer form the shuffeld deck
+        for (int i = 0; i < 2; i++)
+        {
+            player.Push(deck.Pop());
+            UpdatePlayerScore();
+            HitDealer();
+        }
+    }
+ ```
+ The push method:
+ ```C#
+ // to put a new card to the player or dealer hand
+    public void  Push(int card)
+    {
+        cards.Add(card);
+        if (cardAdded != null)
+        {
+            cardAdded(this, new CardEventArgs(card));
+        }
+    }
+ ```
+ 
+ The pop method:
+ ```C#
+ // To remove a card from teh main deck
+    public int Pop()
+    {
+        int temp = cards[0];
+        // Remove first card from the stack
+        cards.RemoveAt(0);
+
+        if (CardRemoved != null)
+        {
+            CardRemoved(this, new CardEventArgs(temp));
+        }
+        return temp;
+    }
+ ```
+ The player has control of the game first with the option of sticking or twisting.
+
 #### Twist:
 
+ ```C#
+ public void Hit()
+    {
+        
+        // Push a card from the stack to the players cards
+        // Remove the card from the deck stack
+        player.Push(deck.Pop());
+        UpdatePlayerScore();
+
+        // Check if the player has gone bust
+        if (player.HandValue() > 21)
+        {
+           
+            // Trun off the head gesture 
+            noddable = false;
+           // Start the deealers turn to show there cards
+            StartCoroutine(DealersTurn());
+        }
+    }
+ ```
 #### Stick:
 
 #### Dealers turn
-
+ ```C#
+ IEnumerator DealersTurn()
+    {
+        // Turn off head gestures for the dealers turn
+        noddable = false;
+       
+        CardStackView view = dealer.GetComponent<CardStackView>();
+        // Show the dealers first card.
+        view.Toggle(dealersFirstCard, true);
+        view.ShowCards();
+        UpdateDealerScore();
+        // Delay showing the dealers card every one second for a new card
+        yield return new WaitForSeconds(1f);
+        // Keep going while teh dealers hand is worth at least 16.
+        // And keep going while the dealers scroe is less than the players score.
+        while (dealer.HandValue() < 17 || dealer.HandValue() < player.HandValue())
+        {
+            // New card for the dealer
+            HitDealer();
+            UpdateDealerScore();
+            // Wait for one second
+            yield return new WaitForSeconds(1f);
+        }
+ ```
 #### Game over conditions
 The game checked inside the DealersTurn() function with conditional checks to see if the player hand value is gretaer than the dealer.
 - The dealer must twist as long as habd value is at 16 or below.
