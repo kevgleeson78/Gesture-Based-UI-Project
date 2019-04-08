@@ -89,15 +89,29 @@ These functions will then be mapped to yes and no head gestures.
 ### Black Jack game development
 
 #### Sprites:
-
-#### Prefabs
+A PDF file containing images of a deck of cards was used to represent the playing cards in the game environment.
+The sprite editor was then used to cut each card from the pdf as individual sprites.
+This gave us a complete deck of cards to use for the development of the game.
+Later values were attached to each card image which will be discussed in the below section "Adding values to the cards"
 
 ### Game controlller
+The game controller script in the application handles all of the game logic and each of the player, dealer and deck prefabs.
+The three card stacks of player, dealer and deck are added within the unity editor.
+These are made publicaly available from the Game controller script.
+```C#
+ // Three card stacks for the player, dealer and the deck
+    public CardStack player;
+    public CardStack dealer;
+    public CardStack deck;
+```
 
+A boolean variable of noddable is used to control if the player is allowed to used head gestures.
+If the player has chosen to stick they should not be able to twist a card.
 #### Shuffling the deck
+To shuffle the deck of cards the fisher yates shuffle algorithm is used.
 
 #### Adding Values to the cards
-
+Each card image in the 
 #### Handling the ace card value
 
 #### Players turn
