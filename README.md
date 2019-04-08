@@ -331,6 +331,8 @@ The total score is recorder by the total variable.
     }
  ```
  The player has control of the game first with the option of sticking or twisting.
+ IF the player chooses to twist the player score is updated and checked if they have gone above 21.
+ If it has a score greater than 21 the dealers turn method is acalled and the players head gertures are turned off.
 
 #### Twist:
 
@@ -355,8 +357,23 @@ The total score is recorder by the total variable.
     }
  ```
 #### Stick:
+IF the player chooses to stick the noddable valiable is set to false to prevent the player from twisting fort he remainder of the game.
+The the dealers turn is then called as acorutine to allow for a delay of one second between cards being shown to tue screen.
 
+```C#
+public void Stick()
+    {
+        // If the player sticks (no gesture)
+        // Turn off head recognition
+        noddable = false;
+        // Start the dealers turn
+        StartCoroutine(DealersTurn());
+    }
+```
 #### Dealers turn
+When it is the dealers turn the first card is turned over and the dealer begins to twist.
+Each time the dealer twists for a new card the dealers score is updated and checked aghainst the player score.
+The dealer also keeps twisting while there hand valkue is less than 17.
  ```C#
  IEnumerator DealersTurn()
     {
@@ -381,6 +398,46 @@ The total score is recorder by the total variable.
             yield return new WaitForSeconds(1f);
         }
  ```
+ 
+ This keeps repoeating until the dealer has gone over the had value of 21 or the dealers hand is equal or better then the player hand..
+ The below game over conditions are then checked with a message to the screen if they evaluate to true.
+#### The dealers first card face down and twist dealer
+
+When a new game is created the dealers first card must not be shown to the player.
+
+This is achieved by a boolean function that gets the card index of the dealers first card and hides the card by placing a card back sprite over the first card.
+
+When it is the dealers turn this card is toggled and show to the player in the screen.
+```C#
+void HitDealer()
+    {
+        
+        int card = deck.Pop();
+        // set the dealers first card to face down
+        // Coverd with the card back sprite
+        if (dealersFirstCard < 0)
+        {
+            dealersFirstCard = card;
+        }
+        dealer.Push(card);
+        // Show the first card if the dealers turn has more that two cards in the stack view.
+        if (dealer.CardCount >=2)
+        {
+            CardStackView view = dealer.GetComponent<CardStackView>();
+            view.Toggle(card, true);
+        }
+    }
+```
+
+cardStackView script (Toggle method) to control the dealers cards show at the at the start of a new game.
+```C#
+    // Toggle the card face up or face down
+    // From the fectchCards dict
+    public void Toggle(int card, bool isFaceUp)
+    {
+        fetchCards[card].IsFaceUp = isFaceUp;
+    }
+```
 #### Game over conditions
 The game checked inside the DealersTurn() function with conditional checks to see if the player hand value is gretaer than the dealer.
 - The dealer must twist as long as habd value is at 16 or below.
@@ -409,6 +466,42 @@ The game checked inside the DealersTurn() function with conditional checks to se
         gameOver = true;
 ```
 #### Play again
+The paly again function simply clears all of the player, dealer and main deck views for a new game.
+
+Head gesture input gets activated for a new game as it is always the players turn first.
+
+The createDeck method is called to shuffle a new deck and deal the cards to the player and the dealer with the dealer firts card face down.
+
+The dealer score and game over message are set to an empty string to clear the screen of any old values that were there from a previous game.
+
+```C#
+// Play again function
+    public void PlayAgain()
+    {
+        // Trun on head gesture recognition
+        gameOver = false;
+        noddable = true;
+        // Clear the palyer, dealer and deck views
+        player.GetComponent<CardStackView>().Clear();
+        dealer.GetComponent<CardStackView>().Clear();
+        deck.GetComponent<CardStackView>().Clear();
+        // Shuffle a new deck
+        deck.CreateDeck();
+        // clear the end of game text
+        winnerText.text = "";
+        dealerScore.text = "";
+        // reset the dealers first card to face down
+        dealersFirstCard = -1;
+        
+        // Start a new game
+        StartGame();
+      
+    }
+```
+
+
+
+
 
 ### Yes no head gesture development
 
