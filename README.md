@@ -2,27 +2,27 @@
 This project is a 4th year assignment for the module Gesture Based UI Development.
 At [GMIT](www.gmit.ie) Galway
 Author: Kevin Gleeson
-## Link to youtube demo [HERE](https://www.youtube.com/watch?v=qdQGHUeOEsk)
+## Link to YouTube demo [HERE](https://www.youtube.com/watch?v=qdQGHUeOEsk)
 
 ## Running the application
 
-Please follow the steps below to run the application on oyur andriod device.
+Please follow the steps below to run the application on your android device.
 
-### You will need an andriod mobile device along with a VR headset inorder to use this application.
+### You will need an android mobile device along with a VR headset in order to use this application.
 
 1. Clone this repository then connect you android device to your pc.
 
 2. Once cloned you will find an APK file named test.apk.
 
-3. Connect oyur android device to your pc via usb.
+3. Connect your android device to your pc via usb.
 
-4. Coppy the file over to your devices root directory.
+4. Copy the file over to your devices root directory.
 
-5. Disconnect yopur andriod device from your pc.
+5. Disconnect your android device from your pc.
 
-6. Locate the apk file on your mobile device clcik on it and install when prompted.
+6. Locate the apk file on your mobile device click on it and install when prompted.
 
-7. You may be warned about the security of the unknown apk file you will have to allow it ro run just follwo the instruction th e device gives yo to allow it to run. It  may vary between devices.
+7. You may be warned about the security of the unknown apk file you will have to allow it to run just follow the instruction the e device gives you to allow it to run. It may vary between devices.
 
 8. Start the application on your device
 
@@ -30,45 +30,45 @@ Please follow the steps below to run the application on oyur andriod device.
 
 
 ## Overview
-For this module we were given an open ended project that integrates gesture based user interatcion with an application.
-Uisng voice commands hand or head gestures to control an object via a software framework.
-The choice of programming language and hardware was up to us to choose along with the type to gesture control to imnplement.
+For this module we were given an open ended project that integrates gesture based user interaction with an application.
+Using voice commands hand or head gestures to control an object via a software framework.
+The choice of programming language and hardware was up to us to choose along with the type to gesture control to implement.
 
-I have chosen to develop a blackjack game in VR using head guestures, unity, google cardboard and my android phone.
+I have chosen to develop a blackjack game in VR using head gestures, unity, google cardboard and my android phone.
 The player controls the game via head movements nodding yes or no to choose between the options available to the user.
 The two options are Stick (nod no) or twist (nod yes).
 
-Once the game has been completed (win or loose) a message is displayed to the user along with an option to play again.
+Once the game has been completed (win or lose) a message is displayed to the user along with an option to play again.
 
-The option to play again is in the form of a button in the users view that can be activated via gaze input.
-When the user points the reticle at the button for more than 1 second it will create a click event to restart the game.
+The option to play again is in the form of a button in the user’s view that can be activated via gaze input.
+When the user points the reticule at the button for more than 1 second it will create a click event to restart the game.
 
 However before I came to decide on developing this system there were other ideas that were considered.
 
 
 ### Initial ideas.
 
-The first idea I had was to develop a 3D game that controls a game object via a mobile phone accellerometer. 
+The first idea I had was to develop a 3D game that controls a game object via a mobile phone accelerometer. 
 
-This user would controll the object via hand gestures of:
+This user would control the object via hand gestures of:
 Tilt Left: move left.
 Tilt Right: move right.
 Tilt Up: Move forward.
 Tilt down: Move backwards.
 
-The players game object would have to collect certain shapes to gain a positive score.
-There woulsd also be certain shapes that would have a negative impact on the players score.
+The player’s game object would have to collect certain shapes to gain a positive score.
+There would also be certain shapes that would have a negative impact on the players score.
 
 The objects that the player would collect and avoid would be dropped into the playing area for interaction.
-In researching this proposal i had my phone dispalying the accellorometer and gyroscope data along with moving a basic game objest in a 3d environment.
+In researching this proposal I had my phone displaying the accelerometer and gyroscope data along with moving a basic game object in a 3d environment.
 
-However there was a issue with the data being processed by my phone specific to my model and an alternative proposal was needed for this project.
+However there was an issue with the data being processed by my phone specific to my model and an alternative proposal was needed for this project.
 Here is an article on unity forums explaining the problem [Link Here](https://answers.unity.com/questions/1273323/gyroscope-samsung-s7-doesnt-work-properly.html).
 
 ### New Plan
-After researching what my model of phone was capable of for gesture bsed development I foud Google Cardboard was a possibility.
+After researching what my model of phone was capable of for gesture based development I found Google Cardboard was a possibility.
 I had a talk with my lecturer and we discussed VR and head gestures controlling a card game.
-From this conversation I had the idea of creating a blackjack game that would be controlled by head guestures.
+From this conversation I had the idea of creating a blackjack game that would be controlled by head gestures.
 
 In the sections below I will discuss how I went about developing the game along with implementing the head gesture recognition for the system.
 
@@ -78,7 +78,7 @@ The purpose of this application is to allow a user to control a card game while 
 <img src="images/New Mockup 1.png">
 
 The card game will be presented to the user via an app on their mobile phone.
-This app is a virtual reallity environment using Google VR.
+This app is a virtual reality environment using Google VR.
 With the phone attached to a Google cardboard or similar device the users head positon can be tracked.
 Tracking the users head is achieved by getting the angle of tilt relative to the phone position (More about this below).
 With this data we can then capture head gestures and map them to actions within the game.
@@ -98,11 +98,11 @@ The head gesture of no triggering the stick function and activating the dealers 
 
 When the game of black jack has finished the user is presented with a message if they have won or not and the option to play again or exit the application. 
 
-The yes head gesture will play again and the no getsure will exit the application.
+The yes head gesture will play again and the no gesture will exit the application.
 
 
 ### Hardware used in creating the application
-The application is compiled and built to an andriod device with unity.
+The application is compiled and built to an android device with unity.
 
 A VR headset is used to view the game when the application is run on the device.
 
@@ -122,10 +122,10 @@ The sprite editor was then used to cut each card from the pdf as individual spri
 This gave us a complete deck of cards to use for the development of the game.
 Later values were attached to each card image which will be discussed in the below section "Adding values to the cards"
 
-### Game controlller
+### Game controller
 The game controller script in the application handles all of the game logic and each of the player, dealer and deck prefabs.
 The three card stacks of player, dealer and deck are added within the unity editor.
-These are made publicaly available from the Game controller script.
+These are made publicly available from the Game controller script.
 ```C#
  // Three card stacks for the player, dealer and the deck
     public CardStack player;
@@ -133,23 +133,23 @@ These are made publicaly available from the Game controller script.
     public CardStack deck;
 ```
 
-A boolean variable of noddable is used to control if the player is allowed to used head gestures.
+A Boolean variable of noddable is used to control if the player is allowed to use head gestures.
 If the player has chosen to stick or there score is greater than 21 they should not be able to twist a card.
 ```C#
-// Boolean to controll the gesture input
+// Boolean to control the gesture input
     public bool noddable = true;
 ```
 
-A Boolean variable of gameover is used to check if the game has ended to allow the player to choose to play again or quit the application.
+A Boolean variable of game over is used to check if the game has ended to allow the player to choose to play again or quit the application.
 
 ```C#    
-    // Boolean to controll head gesture input on game over
+    // Boolean to control head gesture input on game over
     public bool gameOver = false;
  ```
  
  #### Update player/dealer score functions
  
- When the player chooses to twist the score UI gets updated based on the totlat value of the cards they have in their hand.
+ When the player chooses to twist the score UI gets updated based on the total value of the cards they have in their hand.
  
  The UpdatePlayerScore/UpdateDealerScore functions:
  ```C#
@@ -162,7 +162,7 @@ A Boolean variable of gameover is used to check if the game has ended to allow t
         dealerScore.text = "Dealer Score: "+dealer.HandValue().ToString();
     }
  ```
- These functions get called in the player and dealer turn functions described below in the palyer and dealer turn sections.
+ These functions get called in the player and dealer turn functions described below in the player and dealer turn sections.
  
 #### UI messages
 
@@ -179,13 +179,13 @@ Three UI text variables are used to display to the user the:
 
 
 #### Shuffling the deck
-To shuffle the deck of cards the fisher yates shuffle algorithm is used.
+To shuffle the deck of cards the Fisher Yates shuffle algorithm is used.
 
 The algorithm works by starting at the beginning of an array in our case it will be the array holding the deck of cards.
 
 A random number is generated from 0 - 51.
 
-Suppose 34 is generated the card at index 34 is swaped with the card at index 0.
+Suppose 34 is generated the card at index 34 is swapped with the card at index 0.
 
 The algorithm then moves to index 1.
 
@@ -193,7 +193,7 @@ A random number is then generated between 0 - 51.
 
 If 22 is randomly chosen the card at index 22 is swapped with the card at index 1.
 
-This repeats unitl we have moved to the last element in the array at 51.
+This repeats until we have moved to the last element in the array at 51.
 
 ```C#
  // Creating the shuffled deck of cards
@@ -214,12 +214,12 @@ This repeats unitl we have moved to the last element in the array at 51.
         {
             //decrement the counter by one
             n--;
-            // Pick a ranndom number between the current size of the array.
+            // Pick a random number between the current size of the array.
             int k = Random.Range(0, n+1);
             //store random value 
             int temp = cards[k];
             // assign to 52nd slot on first pass the random value to n. 
-            //(n will decrease by one after ech recursive call)  
+            //(n will decrease by one after each recursive call)  
             cards[k] = cards[n];
             // Finally add the random index to the cards array
             cards[n] = temp;
@@ -229,16 +229,16 @@ This repeats unitl we have moved to the last element in the array at 51.
 
 
 #### Adding Values to the cards
-Teh card stack script controlls the values of each card.
+The card stack script controls the values of each card.
 The full list of cards are held in an array.
-THe cards are ordered from (ace, 2, 3 ... , King).
+The cards are ordered from (ace, 2, 3 ... , King).
 
 Therefore a mod 13 operator can be used to get each card within the array.
 The first card from each suit is ignored as they are aces.
 
 We will deal with giving the value to an ace further down this function.
 
-First off the cards between 2 and 9 are givne there face values.
+First off the cards between 2 and 9 are given there face values.
 
 Then the Jack, Queen and King are given a value of ten.
 
@@ -285,7 +285,7 @@ Then the Jack, Queen and King are given a value of ten.
 ```
 
 #### Handling the ace card value
-The aces have to be accounted fro as a value of 1 if the totla score of the player or dealer hand is less than 21.
+The aces have to be accounted for as a value of 1 if the total score of the player or dealer hand is less than 21.
 
 IF the player or dealer hand is greater than 21 the ace gets a value of one.
 
@@ -294,7 +294,7 @@ The total score is recorder by the total variable.
         // for the different possible values the ace can have either a one or eleven.
         for (int i = 0; i < aces; i++)
         {
-            // check if the the current score is less than or equal to 21
+            // check if the current score is less than or equal to 21
             if (total+11 <= 21)
             {
                 // Ace == 11 if above condition is true
@@ -313,14 +313,14 @@ The total score is recorder by the total variable.
 ```
 #### Players turn
 
- At the start of each game the cards are delt to the player and dealer.
+ At the start of each game the cards are dealt to the player and dealer.
  The StartGame function is used to deal two cards to the player and dealer with push and pop methods use to take a card from the main deck and place them in the dealer and player deck array.
  
  ```C#
  void StartGame()
     {
         
-        // Deal two card each to the player and dealer form the shuffeld deck
+        // Deal two card each to the player and dealer form the shuffled deck
         for (int i = 0; i < 2; i++)
         {
             player.Push(deck.Pop());
@@ -344,7 +344,7 @@ The total score is recorder by the total variable.
  
  The pop method:
  ```C#
- // To remove a card from teh main deck
+ // To remove a card from the main deck
     public int Pop()
     {
         int temp = cards[0];
@@ -360,7 +360,7 @@ The total score is recorder by the total variable.
  ```
  The player has control of the game first with the option of sticking or twisting.
  IF the player chooses to twist the player score is updated and checked if they have gone above 21.
- If it has a score greater than 21 the dealers turn method is acalled and the players head gertures are turned off.
+ If it has a score greater than 21 the dealers turn method is called and the players head gestures are turned off.
 
 #### Twist:
 
@@ -377,16 +377,16 @@ The total score is recorder by the total variable.
         if (player.HandValue() > 21)
         {
            
-            // Trun off the head gesture 
+            // Turn off the head gesture 
             noddable = false;
-           // Start the deealers turn to show there cards
+           // Start the dealers turn to show their cards
             StartCoroutine(DealersTurn());
         }
     }
  ```
 #### Stick:
-IF the player chooses to stick the noddable valiable is set to false to prevent the player from twisting fort he remainder of the game.
-The the dealers turn is then called as acorutine to allow for a delay of one second between cards being shown to tue screen.
+IF the player chooses to stick the noddable variable is set to false to prevent the player from twisting for the remainder of the game.
+The dealers turn is then called as a corutine to allow for a delay of one second between cards being shown to the screen.
 
 ```C#
 public void Stick()
@@ -400,8 +400,8 @@ public void Stick()
 ```
 #### Dealers turn
 When it is the dealers turn the first card is turned over and the dealer begins to twist.
-Each time the dealer twists for a new card the dealers score is updated and checked aghainst the player score.
-The dealer also keeps twisting while there hand valkue is less than 17.
+Each time the dealer twists for a new card the dealers score is updated and checked against the player score.
+The dealer also keeps twisting while there hand value is less than 17.
  ```C#
  IEnumerator DealersTurn()
     {
@@ -415,8 +415,8 @@ The dealer also keeps twisting while there hand valkue is less than 17.
         UpdateDealerScore();
         // Delay showing the dealers card every one second for a new card
         yield return new WaitForSeconds(1f);
-        // Keep going while teh dealers hand is worth at least 16.
-        // And keep going while the dealers scroe is less than the players score.
+        // Keep going while the dealers hand is worth at least 16.
+        // And keep going while the dealers score is less than the players score.
         while (dealer.HandValue() < 17 || dealer.HandValue() < player.HandValue())
         {
             // New card for the dealer
@@ -427,13 +427,13 @@ The dealer also keeps twisting while there hand valkue is less than 17.
         }
  ```
  
- This keeps repoeating until the dealer has gone over the had value of 21 or the dealers hand is equal or better then the player hand..
+ This keeps repeating until the dealer has gone over the hand value of 21 or the dealers hand is equal or better than the player hand.
  The below game over conditions are then checked with a message to the screen if they evaluate to true.
-#### The dealers first card face down and twist dealer
+#### The dealer’s first card face down and twist dealer
 
-When a new game is created the dealers first card must not be shown to the player.
+When a new game is created the dealer’s first card must not be shown to the player.
 
-This is achieved by a boolean function that gets the card index of the dealers first card and hides the card by placing a card back sprite over the first card.
+This is achieved by a Boolean function that gets the card index of the dealer’s first card and hides the card by placing a card back sprite over the first card.
 
 When it is the dealers turn this card is toggled and show to the player in the screen.
 ```C#
@@ -448,7 +448,7 @@ void HitDealer()
             dealersFirstCard = card;
         }
         dealer.Push(card);
-        // Show the first card if the dealers turn has more that two cards in the stack view.
+        // Show the first card if the dealers turn has more than two cards in the stack view.
         if (dealer.CardCount >=2)
         {
             CardStackView view = dealer.GetComponent<CardStackView>();
@@ -457,7 +457,7 @@ void HitDealer()
     }
 ```
 
-cardStackView script (Toggle method) to control the dealers cards show at the at the start of a new game.
+cardStackView script (Toggle method) to control the dealers cards show at the start of a new game.
 ```C#
     // Toggle the card face up or face down
     // From the fectchCards dict
@@ -467,11 +467,11 @@ cardStackView script (Toggle method) to control the dealers cards show at the at
     }
 ```
 #### Game over conditions
-The game checked inside the DealersTurn() function with conditional checks to see if the player hand value is gretaer than the dealer.
-- The dealer must twist as long as habd value is at 16 or below.
-- The dealer must attempt to get a higher or equal value of the playuer hand.
-- The message is finally desplayed to the use once the dealer has completed their turn.
-- Once the dealers turn is over the gameover vairable is set to true to allow the user to choose to play again or quit the game.
+The game checked inside the DealersTurn() function with conditional checks to see if the player hand value is greater than the dealer.
+- The dealer must twist as long as hand value is at 16 or below.
+- The dealer must attempt to get a higher or equal value of the player hand.
+- The message is finally displayed to the use once the dealer has completed their turn.
+- Once the dealers turn is over the game over variable is set to true to allow the user to choose to play again or quit the game.
 
 ```C#
 // End game conditions Loose
@@ -494,11 +494,11 @@ The game checked inside the DealersTurn() function with conditional checks to se
         gameOver = true;
 ```
 #### Play again
-The paly again function simply clears all of the player, dealer and main deck views for a new game.
+The play again function simply clears all of the player, dealer and main deck views for a new game.
 
 Head gesture input gets activated for a new game as it is always the players turn first.
 
-The createDeck method is called to shuffle a new deck and deal the cards to the player and the dealer with the dealer firts card face down.
+The createDeck method is called to shuffle a new deck and deal the cards to the player and the dealer with the dealer first card face down.
 
 The dealer score and game over message are set to an empty string to clear the screen of any old values that were there from a previous game.
 
@@ -530,11 +530,11 @@ The dealer score and game over message are set to an empty string to clear the s
 
 ### Google VR library for unity
 
-The Google VR library for unity was used to track the users head movement when the application is running in their phone and the phone is atttached to a VR headset.
+The Google VR library for unity was used to track the users head movement when the application is running in their phone and the phone is attached to a VR headset.
 
 #### Boolean triggers and CheckMovement method
 
-To achieve triggering the head gesture of yes and no  there are four boolen variable of up, down, left and right initialised to false .
+To achieve triggering the head gesture of yes and no there are four Boolean variable of up, down, left and right initialised to false.
 These four variables are held locally within the CeckMovement Method.
 ```C#
 private void CheckMovement()
@@ -544,11 +544,11 @@ private void CheckMovement()
         bool right = false, left = false, up = false, down = false;
 ```
 The check movement method is responsible for setting the above four variables to true if conditions are met.
-These conditions will be explianed in the next sections.
+These conditions will be explained in the next sections.
 
 #### Camera angle 
-The angle of the camera view is used to get the angle of rotation based on the positon of the users head (Where they are looking in the VR space)
-Teh cameras euler angles are gather by usuing the following method:
+The angle of the camera view is used to get the angle of rotation based on the positon of the users’ head (Where they are looking in the VR space)
+The cameras Euler angles are gather by using the following method:
 ```C#
 Camera.main.transform.eulerAngles;
 ```
@@ -557,31 +557,31 @@ This can then be used to measure how far the head is away from a fixed point on 
 First variables are globally declared to hold:
 - An array of Vector3 cordiantes 
 - an index variable to set the amount of time that is to pass before the head positon is read and then reset.
-- A Vector3 cordinate centerAngle variable, a fixed position that will be used to measure how far away the cameras rotation along either the x or y axis is.
-- A float variable named dist that will be used to set the accepted distance where once passed will set the boolean values of up, down, left, right to true.
+- A Vector3 coordinate centerAngle variable, a fixed position that will be used to measure how far away the cameras rotation along either the x or y axis is.
+- A float variable named dist that will be used to set the accepted distance where once passed will set the Boolean values of up, down, left, right to true.
 
 ```C#
  // Vector3 array to angle of device
     private Vector3[] angles;
     // Index for update function
     private int index;
-    // Center angle of device
+    // Centre angle of device
     // For resetting after head gesture has been recognised.
     private Vector3 centerAngle;
-    // The amount of up/down - left/right movement from the center angle needed to trigger yes/ no
+    // The amount of up/down - left/right movement from the centre angle needed to trigger yes/ no
     private float dist = 7.0f;
 ```
-#### Storing euler angles of the users head position 
-To access the users head position over time an array is used to store the angle of rotation inside unitys update function.
+#### Storing Euler angles of the users head position 
+To access the users head position over time an array is used to store the angle of rotation inside unity’s update function.
 
-Each tiome update function is called the users head position is stored in the globally declared angles array.
+Each time update function is called the users head position is stored in the globally declared angles array.
 
 The index of this array is incremented each time the update function is called and set to the angles array.
 
 ```C#
 void Update()
     {
-        // Get the angle of the device relative to the the camera position
+        // Get the angle of the device relative to the camera position
         // New to the latest version of GVR.
         angles[index] = Camera.main.transform.eulerAngles;
         // Increment the index for every update.
@@ -601,20 +601,20 @@ void Update()
     }
 ```
 
-This gives us an array of angles that we can check against to see if the head ahas passed the pre-set treshold that will set boolean values of up, down, left or right to true.
+This gives us an array of angles that we can check against to see if the head has passed the pre-set threshold that will set Boolean values of up, down, left or right to true.
 #### Yes head gesture:
-The yes head gesture is triggered if the up and down boolean variables are true.
+The yes head gesture is triggered if the up and down Boolean variables are true.
 
-This is achieved by looping through the angles array populated above by the update function andf comparing the distance between the center fixed angle and the head position angle in the array.
+This is achieved by looping through the angles array populated above by the update function and comparing the distance between the centres fixed angle and the head position angle in the array.
 
 This is measured along the x axis.
 
-If the  pre-set distacnce - center angle is grater than the angle of the head position angkes array the treshoild has been passed and down gets set to true.
+If the  pre-set distance - centre angle is greater than the angle of the head position angles array the threshold has been passed and down gets set to true.
 
 
-The oposite is checked for upward motion:
+The opposite is checked for upward motion:
 
-If the pe-set distance  + the fixed center angle  is les than the index of the array of head positions teh treshold for up has been passed and up gets set to true.
+If the pre-set distance  + the fixed centre angle  is less than the index of the array of head positions the threshold for up has been passed and up gets set to true.
 
 ```C#
 for (int i = 0; i < 80; i++)
@@ -635,7 +635,7 @@ for (int i = 0; i < 80; i++)
 
  The combination of up and down are evaluated within an if statement and if true we have a yes gesture.
  
- !(left && right) condition is used to only detect up and down head movments.
+ !(left && right) condition is used to only detect up and down head movements.
  This can then be used to call the methods we need.
  
  ```C#
@@ -663,16 +663,16 @@ for (int i = 0; i < 80; i++)
         }
  ```
 #### No head gesture:
-The no head gesture of left and right movement is measured along the y axis and compared to the fixed center euler angle.
+The no head gesture of left and right movement is measured along the y axis and compared to the fixed centre Euler angle.
 
 For left to be true:
 
-The fixed center angle on the y axis - the pre-set distance should be greater than one of the angles with the euler angle (angles array).
+The fixed centre angle on the y axis - the pre-set distance should be greater than one of the angles with the Euler angle (angles array).
 
 For right to be true:
-The fixed center angle on the y axis - the pre-set distance should be less than one of the angles with the euler angle (angles array).
+The fixed centre angle on the y axis - the pre-set distance should be less than one of the angles with the Euler angle (angles array).
 ```C#
-  // Check the position of rotaion 
+  // Check the position of rotation 
         for (int i = 0; i < 80; i++)
         {
          
@@ -688,15 +688,15 @@ The fixed center angle on the y axis - the pre-set distance should be less than 
         }
 ```
 
-Finally a combination of both left and right boolean values are checked, if they are both true this is a no gesture.
+Finally a combination of both left and right Boolean values are checked, if they are both true this is a no gesture.
 
 !(up && down) condition is used to only detect left and right head movements.
 
-This can then be used to call what ever method we neeed inside this conditional:
+This can then be used to call whatever method we need inside this conditional:
 
 ```C#
   // If gesture is NO and not yes
-        // Stop mulitple gestures being recognised
+        // Stop multiple gestures being recognised
         if (left && right && !(up && down))
         {
             //Debug.Log("gesture = NO");
@@ -718,16 +718,16 @@ This can then be used to call what ever method we neeed inside this conditional:
 
 #### Resetting the gestures:
 
-The head gestures are reset by creating a new center angle, a new static reference point array of the size 80 along with the index variable being reset to 0.
+The head gestures are reset by creating a new centre angle, a new static reference point array of the size 80 along with the index variable being reset to 0.
 
 ```C#
 void ResetGesture()
     { 
-        // Reset the center angle of the camera.
+        // Reset the centre angle of the camera.
 
         centerAngle = Camera.main.transform.eulerAngles;
         
-        // Reset the angle of the camera to listen out fro a new gesture
+        // Reset the angle of the camera to listen out for a new gesture
         angles = new Vector3[80];
         // reset the index from the update function.
         index = 0;
@@ -740,7 +740,7 @@ This function is called every 30 iterations of the update function.
 ```C#
 void Update()
     {
-        // Get the angle of the device relative to the the camera position
+        // Get the angle of the device relative to the camera position
         // New to the latest version of GVR.
         angles[index] = Camera.main.transform.eulerAngles;
         // Increment the index for every update.
@@ -760,10 +760,10 @@ void Update()
     }
 ```
 #### Triggering the game controller functions from recognised gestures
-When a yes or no head gesture is eveluated to true in the above conditional checks we can access the game controller functions appropriate from the head gesture performed.
+When a yes or no head gesture is evaluated to true in the above conditional checks we can access the game controller functions appropriate from the head gesture performed.
 
 
-First we access the Game controllers public variables by creating an instance of the game controller script
+First we access the Game controller’s public variables by creating an instance of the game controller script
 
 ```C#
     /*
@@ -776,8 +776,8 @@ First we access the Game controllers public variables by creating an instance of
 #### Yes gesture function calls
 Inside the yes conditional check we call the Hit() method from the game controller script to twist a card.
 
-An if statment is used to see if the values of noddable is true and game over is false.
-This simply means that head gestures are still available for use and the gmae is atill active.
+An if statement is used to see if the values of noddable is true and game over is false.
+This simply means that head gestures are still available for use and the game is still active.
 ```C#
 //Debug.Log("Gesture =  YES");
             // GvrCardboardHelpers.Recenter();
@@ -790,8 +790,8 @@ This simply means that head gestures are still available for use and the gmae is
                
             }
 ```
-The game over value is set to true when the game has finished and used for the player to play agian or quit the game with yes/ no gestures.
- If a yes gesture is dectected within this statement the playAgain method is called from the game controller script and a new game starts.
+The game over value is set to true when the game has finished and used for the player to play again or quit the game with yes/ no gestures.
+ If a yes gesture is detected within this statement the playAgain method is called from the game controller script and a new game starts.
  
  ```C#
    // If its game over 
@@ -830,18 +830,18 @@ If game over is true and a no gesture us detected the application is terminated.
 ```
 
 ### Architecture for the solution
-Below is a class digram of each script contained within the application.
+Below is a class diagram of each script contained within the application.
 
-The relationships between classes are show along with each instace variable and method contained within each class.
+The relationships between classes are show along with each instance variable and method contained within each class.
 
 <img src="images/ClassDiagram1.png">
 
 ### Conclusions & Recommendations
 For the most part I really enjoyed developing this application and working with the Google VR library.
-I had never considered to develop a gesture based game before and module presented an alternative way of user interface communication between the user and machine an aspect I found most interesting.
+I had never considered to develop a gesture based game before and module presented an alternative way of user interface communication between the users and machine an aspect I found most interesting.
 
 I found the project made me pose the questions:
-If I have no UI buttons, Keyborad or mouse to interact with the application:
+If I have no UI buttons, Keyboard or mouse to interact with the application:
 What alternatives are there?
 How do I implement this alternative?
 
@@ -849,53 +849,53 @@ When I worked on other applications I had never considered gesture based interac
 
 Now it will be an aspect I will look at in including to future applications if applicable.
 
-Any problems I had encountered (listed below) there were fixes available within the uinty forums.
+Any problems I had encountered (listed below) there were fixes available within the unity forums.
 #### Problems while developing
-During the devlopmetn of the application the following problems were discovered:
+During the development of the application the following problems were discovered:
 
-#### New vresion of Google VR unity library had no sterioscopic view within the unity editor only a single view.
+#### New version of Google VR unity library had no stereoscopic view within the unity editor only a single view.
 
 This caused problems while setting the layout of the UI elements within the users view.
 
-The view in unity was completly different than the actual view on the movbile device once built.
+The view in unity was completely different than the actual view on the mobile device once built.
 
 I had to build a new apk to the mobile device each time I added a new UI feature to ensure it was displaying properly.
 
-This turned out to be very time consuming as it could take up to five minutes to sucussfully build the app to my mobile device.
+This turned out to be very time consuming as it could take up to five minutes to successfully build the app to my mobile device.
 
-#### Resetting the center angle 
-Whe the fixed cenetre angle is reset once a yes or no head gesture os triggered the center point is a little off each time.
+#### Resetting the centre angle 
+When the fixed centre angle is reset once a yes or no head gesture is triggered the centre point is a little off each time.
 
 For example a yes gesture of up and down head movement:
-- The user moves head up past the treshold and yes gets set to true.
+- The user moves head up past the threshold and yes gets set to true.
 
-- The user moves head down past the treshold and down gets set to true.
+- The user moves head down past the threshold and down gets set to true.
 
-- At this point the center angle is reste based to the camera view but the user still has to move their head back up to looking  straight ahead.
+- At this point the centre angle is reset based to the camera view but the user still has to move their head back up to looking straight ahead.
 
-- The center angle is a little lower than when first run therefore a wider head movement downwards is neede to detect a downward movement.
+- The centre angle is a little lower than when first run therefore a wider head movement downwards is needed to detect a downward movement.
 
-- To attempt to fix this the retet method is called every 30 frames so that the center angle will be reset where ever the user is looking.
+- To attempt to fix this the reset method is called every 30 frames so that the centre angle will be reset where ever the user is looking.
 
 - This will work in most instances with a failure rate of 5%.
 
 #### Clipping plane of sprites 
 
 - A problem I had with the game sprites of the cards and text UI elements being displayed properly.
-When I first built the applicatino to my mobile device there were no sprites visible.
-After many hours i discovered that the clipping plane of the camera view needed to be set close to zero for objects to become into focus with the camera.
+When I first built the application to my mobile device there were no sprites visible.
+After many hours I discovered that the clipping plane of the camera view needed to be set close to zero for objects to become into focus with the camera.
 
 By default this was set to 3 but needed to be 0.1 or lower for the objects to become visible. 
 
 
 ### Further development 
- For future development of the appliaction I would like to add:
+ For future development of the application I would like to add:
  - A currency functionality for betting on a hand.
  - The ability to split your hand into two hands if two cards match.
- - To simualte the casino environment of black jack I would add five decks of cards shuffled together
- - The ability to have multiple palyers in the same game session
- - Add a more emersive 3D environment with a full room and table
- - Add Sound effects of people chatter and cards being shuffeled/ delt
+ - To simulate the casino environment of black jack I would add five decks of cards shuffled together
+ - The ability to have multiple players in the same game session
+ - Add a more immersive 3D environment with a full room and table
+ - Add Sound effects of people chatter and cards being shuffled/ dealt
  
 ### Resources
 
