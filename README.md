@@ -607,6 +607,7 @@ for (int i = 0; i < 80; i++)
 
  The combination of up and down are evaluated within an if statement and if true we have a yes gesture.
  
+ !(left && right) condition is used to only detect up and down head movments.
  This can then be used to call the methods we need.
  
  ```C#
@@ -661,6 +662,8 @@ The fixed center angle on the y axis - the pre-set distance should be less than 
 
 Finally a combination of both left and right boolean values are checked, if they are both true this is a no gesture.
 
+!(up && down) condition is used to only detect left and right head movements.
+
 This can then be used to call what ever method we neeed inside this conditional:
 
 ```C#
@@ -687,7 +690,116 @@ This can then be used to call what ever method we neeed inside this conditional:
 
 #### Resetting the gestures:
 
-####  Bringing the two elements together
+The head gestures are reset by creating a new center angle, a new static reference point array of the size 80 along with the index variable being reset to 0.
+
+```C#
+void ResetGesture()
+    { 
+        // Reset the center angle of the camera.
+
+        centerAngle = Camera.main.transform.eulerAngles;
+        
+        // Reset the angle of the camera to listen out fro a new gesture
+        angles = new Vector3[80];
+        // reset the index from the update function.
+        index = 0;
+        
+       
+    }
+```
+This function is called every 30 iterations of the update function.
+
+```C#
+void Update()
+    {
+        // Get the angle of the device relative to the the camera position
+        // New to the latest version of GVR.
+        angles[index] = Camera.main.transform.eulerAngles;
+        // Increment the index for every update.
+        // The gesture has to register in this time frame
+        index++;
+        // check state every 30 frames
+        if (index == 30)
+        {
+            // Check movement function
+            CheckMovement();
+
+            // reset the gesture to zero.
+            ResetGesture();
+
+
+        }
+    }
+```
+#### Triggering the game controller functions from recognised gestures
+When a yes or no head gesture is eveluated to true in the above conditional checks we can access the game controller functions appropriate from the head gesture performed.
+
+
+First we access the Game controllers public variables by creating an instance of the game controller script
+
+```C#
+    /*
+     * Access GameController script
+     * Call Hit, stick, playAgaian functions.
+     * Mapped to head gestures. 
+     * */
+    public GameController gc;
+```
+#### Yes gesture function calls
+Inside the yes conditional check we call the Hit() method from the game controller script to twist a card.
+
+An if statment is used to see if the values of noddable is true and game over is false.
+This simply means that head gestures are still available for use and the gmae is atill active.
+```C#
+//Debug.Log("Gesture =  YES");
+            // GvrCardboardHelpers.Recenter();
+            // Condition to check if the game is still in play 
+            // and accepting noddable gestures
+            if (gc.noddable && !gc.gameOver)
+            {
+                // Twist option with nodding yes.
+                gc.Hit();
+               
+            }
+```
+The game over value is set to true when the game has finished and used for the player to play agian or quit the game with yes/ no gestures.
+ If a yes gesture is dectected within this statement the playAgain method is called from the game controller script and a new game starts.
+ 
+ ```C#
+   // If its game over 
+            if (gc.gameOver)
+            {
+                // Play again if yes gesture us detected from above condition.
+                gc.PlayAgain();
+                
+            }
+ ```
+#### No head gesture function calls
+
+If inside the no conditional check we get to call either the stick method from the game controller if noddable is true.
+
+If game over is true and a no gesture us detected the application is terminated.
+
+
+```C#
+  if (left && right && !(up && down))
+        {
+            //Debug.Log("gesture = NO");
+            // Check if the noddable boolean is set to true.
+            // From the GameController script
+            if (gc.noddable)
+            {   //Call the Stick() function from the GameController script
+                gc.Stick();
+                // Its now the dealers turn...
+            }
+            if (gc.gameOver)
+            {
+                // Android close icon or back button tapped.
+                Application.Quit();
+            }
+            
+        }
+```
 
 ### Architecture for the solution
 
