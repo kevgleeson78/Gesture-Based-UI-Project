@@ -1,5 +1,7 @@
 # Gesture-Based-UI-Project
 This project is a 4th year assignment for the module Gesture Based UI Development.
+At [GMIT](www.gmit.ie) Galway
+Author: Kevin Gleeson
 ## Link to youtube demo [HERE](https://www.youtube.com/watch?v=qdQGHUeOEsk)
 ## Overview
 For this module we were given an open ended project that integrates gesture based user interatcion with an application.
@@ -804,18 +806,88 @@ If game over is true and a no gesture us detected the application is terminated.
 ### Architecture for the solution
 Below is a class digram of each script contained within the application.
 
-<img src="images/ClassDiagram1.png">
-### Conclusions & Recommendations
+The relationships between classes are show along with each instace variable and method contained within each class.
 
-### Problems while developing
+<img src="images/ClassDiagram1.png">
+
+### Conclusions & Recommendations
+For the most part I really enjoyed developing this application and working with the Google VR library.
+I had never considered to develop a gesture based game before and module presented an alternative way of user interface communication between the user and machine an aspect I found most interesting.
+
+I found the project made me pose the questions:
+If I have no UI buttons, Keyborad or mouse to interact with the application:
+What alternatives are there?
+How do I implement this alternative?
+
+When I worked on other applications I had never considered gesture based interaction. 
+
+Now it will be an aspect I will look at in including to future applications if applicable.
+
+Any problems I had encountered (listed below) there were fixes available within the uinty forums.
+#### Problems while developing
+During the devlopmetn of the application the following problems were discovered:
+
+#### New vresion of Google VR unity library had no sterioscopic view within the unity editor only a single view.
+
+This caused problems while setting the layout of the UI elements within the users view.
+
+The view in unity was completly different than the actual view on the movbile device once built.
+
+I had to build a new apk to the mobile device each time I added a new UI feature to ensure it was displaying properly.
+
+This turned out to be very time consuming as it could take up to five minutes to sucussfully build the app to my mobile device.
+
+#### Resetting the center angle 
+Whe the fixed cenetre angle is reset once a yes or no head gesture os triggered the center point is a little off each time.
+
+For example a yes gesture of up and down head movement:
+- The user moves head up past the treshold and yes gets set to true.
+
+- The user moves head down past the treshold and down gets set to true.
+
+- At this point the center angle is reste based to the camera view but the user still has to move their head back up to looking  straight ahead.
+
+- The center angle is a little lower than when first run therefore a wider head movement downwards is neede to detect a downward movement.
+
+- To attempt to fix this the retet method is called every 30 frames so that the center angle will be reset where ever the user is looking.
+
+- This will work in most instances with a failure rate of 5%.
+
+#### Clipping plane of sprites 
+
+- A problem I had with the game sprites of the cards and text UI elements being displayed properly.
+When I first built the applicatino to my mobile device there were no sprites visible.
+After many hours i discovered that the clipping plane of the camera view needed to be set close to zero for objects to become into focus with the camera.
+
+By default this was set to 3 but needed to be 0.1 or lower for the objects to become visible. 
+
 
 ### Further development 
-
+ For future development of the appliaction I would like to add:
+ - A currency functionality for betting on a hand.
+ - The ability to split your hand into two hands if two cards match.
+ - To simualte the casino environment of black jack I would add five decks of cards shuffled together
+ - The ability to have multiple palyers in the same game session
+ - Add a more emersive 3D environment with a full room and table
+ - Add Sound effects of people chatter and cards being shuffeled/ delt
+ 
 ### Resources
 
+ https://www.youtube.com/watch?v=3icqAJnZF8Y
+ 
+ https://www.youtube.com/watch?v=FxH8FoddkVY&list=PLZo2FfoMkJeE6GXx8cEUeR9KzItTvaKlz
+ 
+ https://developers.google.com/vr/develop/unity/get-started-android
+ 
+ https://docs.unity3d.com/Manual/googlevr_sdk_overview.html
+ 
+ https://forum.unity.com/threads/help-with-gaze-click-in-unity-google-vr.534867/
+ 
+ https://forum.unity.com/threads/how-to-set-near-far-clipping-planes-on-built-in-vr-camera-s.370955/
+ 
+ https://github.com/googlevr/gvr-unity-sdk
 
 
 
 
 
-Author: Kevin Gleeson
