@@ -1,6 +1,6 @@
 # Gesture-Based-UI-Project
 This project is a 4th year assignment for the module Gesture Based UI Development.
-## Link to youtube demo [HERE](https://www.youtube.com/watch?v=Uiy2A6vALLQ)
+## Link to youtube demo [HERE](https://www.youtube.com/watch?v=qdQGHUeOEsk)
 ## Overview
 For this module we were given an open ended project that integrates gesture based user interatcion with an application.
 Uisng voice commands hand or head gestures to control an object via a software framework.
