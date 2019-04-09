@@ -921,4 +921,4 @@ By default this was set to 3 but needed to be 0.1 or lower for the objects to be
  
  https://developers.google.com/vr/reference/android/com/google/vr/sdk/base/HeadTransform
 
-
+ http://www.leadingones.com/articles/head-gesture-recognition.html
