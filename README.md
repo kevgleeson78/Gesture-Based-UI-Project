@@ -24,7 +24,7 @@ Please follow the steps below to run the application on your android device.
 
 6. Locate the apk file on your mobile device click on it and install when prompted.
 
-7. You may be warned about the security of the unknown apk file you will have to allow it to run just follow the instruction the e device gives you to allow it to run. It may vary between devices.
+7. You may be warned about the security of the unknown apk file you will have to allow it to run just follow the instruction the device gives you to allow it to run. It may vary between devices.
 
 8. Start the application on your device
 
