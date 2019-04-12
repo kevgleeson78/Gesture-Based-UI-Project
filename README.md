@@ -1,6 +1,8 @@
 # Gesture-Based-UI-Project
 This project is a 4th year assignment for the module Gesture Based UI Development.
+
 At [GMIT](www.gmit.ie) Galway
+
 Author: Kevin Gleeson
 ## Link to YouTube demo [HERE](https://www.youtube.com/watch?v=qdQGHUeOEsk)
 
@@ -22,7 +24,7 @@ Please follow the steps below to run the application on your android device.
 
 6. Locate the apk file on your mobile device click on it and install when prompted.
 
-7. You may be warned about the security of the unknown apk file you will have to allow it to run just follow the instruction the e device gives you to allow it to run. It may vary between devices.
+7. You may be warned about the security of the unknown apk file you will have to allow it to run just follow the instruction the device gives you to allow it to run. It may vary between devices.
 
 8. Start the application on your device
 
@@ -804,9 +806,9 @@ The game over value is set to true when the game has finished and used for the p
  ```
 #### No head gesture function calls
 
-If inside the no conditional check we get to call either the stick method from the game controller if noddable is true.
+If inside the No conditional check we get to call either the stick method from the game controller if noddable is true.
 
-If game over is true and a no gesture us detected the application is terminated.
+If game over is true and a no gesture is detected the application is terminated.
 
 
 ```C#
@@ -841,13 +843,13 @@ For the most part I really enjoyed developing this application and working with 
 I had never considered to develop a gesture based game before and module presented an alternative way of user interface communication between the users and machine an aspect I found most interesting.
 
 I found the project made me pose the questions:
-If I have no UI buttons, Keyboard or mouse to interact with the application:
+If I have no UI buttons, Keyboard or mouse to interact with the application,
 What alternatives are there?
 How do I implement this alternative?
 
 When I worked on other applications I had never considered gesture based interaction. 
 
-Now it will be an aspect I will look at in including to future applications if applicable.
+Now it will be an aspect I will look at in future applications if applicable.
 
 Any problems I had encountered (listed below) there were fixes available within the unity forums.
 #### Problems while developing
@@ -913,7 +915,10 @@ By default this was set to 3 but needed to be 0.1 or lower for the objects to be
  
  https://github.com/googlevr/gvr-unity-sdk
 
+ https://www.dotnetperls.com/fisher-yates-shuffle
+ 
+ https://developers.google.com/vr/reference/unity/class/GvrHeadset
+ 
+ https://developers.google.com/vr/reference/android/com/google/vr/sdk/base/HeadTransform
 
-
-
-
+ http://www.leadingones.com/articles/head-gesture-recognition.html
